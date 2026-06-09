@@ -9,6 +9,61 @@ interface Props {
 
 export function SlideRenderer({ slide, onTeleport }: Props) {
   switch (slide.type) {
+    case 'info-cards':
+      return (
+        <div>
+          <h1>{slide.heading}</h1>
+          <div className="card-container">
+            {slide.cards.map((card, i) => (
+              <div className="card-wrapper" key={i} onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
+                <div className="card-inner">
+                  <div className="card-face card-front">
+                    <img src={card.imageUrl} alt={card.imageAlt}/>
+                    <h3>{card.cardHeading}</h3>
+                  </div>
+                  <p className="card-face card-back">{card.bodyText}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <style>{/*css*/`
+            .card-container {
+              display: flex;
+              gap: 1rem;
+              perspective: 1000px;
+            }
+            .card-wrapper.is-flipped .card-inner {
+              transform: rotateY(180deg);
+            }
+            .card-inner {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              transition: transform 0.5s ease;
+              transform-style: preserve-3d;
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-template-areas: "card-space";
+            }
+            .card-front, .card-back {
+              grid-area: card-space;
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              backface-visibility: hidden;
+              background-color: white;
+            }
+            .card-back {
+              transform: rotateY(180deg)
+            }
+          `}</style>
+        </div>
+      );
+
     case 'info-chat':
       return (
         <div>
@@ -58,8 +113,10 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
           <button onClick={() => {
             if (slide.acceptableAnswers.some((validAnswer) => validAnswer.trim().toLowerCase() === answer.trim().toLowerCase())) {
               setFeedback(slide.feedback);
+              // make this unlock the "next" button later
             } else {
               setFeedback('Not quite. Try looking at that one again...');
+              // add brief pause
               onTeleport(slide.remedialSlideId);
             }
           }}>Submit</button>

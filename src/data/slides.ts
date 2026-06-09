@@ -27,7 +27,7 @@ export const module1: Slide[] = [
     {
         slideId: "info-cards-test",
         type: "info-cards",
-        heading: "",
+        heading: "this is the heading for the info-cards section",
         cards: [
             {
                 imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/72/Grey_kitty.jpg",
