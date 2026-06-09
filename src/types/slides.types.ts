@@ -53,8 +53,8 @@ export interface QuestionMultipleChoiceSlide {
 export interface QuestionInputSlide {
   type: "question-input";
   heading: string;
-  correctAnswer: string;
-  hint: string;
+  acceptableAnswers: string[];
+  feedback: string;
   remedialSlideId: string;
 }
 

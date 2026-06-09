@@ -42,5 +42,14 @@ export const module1: Slide[] = [
                 bodyText: "this is the body text that you see after you flip the second card over"
             }
         ]
+    },
+
+    {
+        slideId: "question-input-test",
+        type: "question-input",
+        heading: "this is a test for question input. say 'yay' or 'cool'. it will teleport you to info-text-video-test if you get it wrong",
+        acceptableAnswers: ["yay", "cool"],
+        feedback: "correct hooray",
+        remedialSlideId: "info-text-video-test",
     }
 ] as const;
