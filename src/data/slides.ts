@@ -45,6 +45,28 @@ export const module1: Slide[] = [
     },
 
     {
+        slideId: "info-timeline-test",
+        type: "info-timeline",
+        heading: "this is the info timeline heading",
+        events: [
+            {
+                name: "name of event 1",
+                date: "1776",
+                imageUrl: "https://placeholder.cat/cat",
+                imageAlt: "random cat placeholder",
+                description: "this should pop up when i click"
+            },
+            {
+                name: "name of event 1",
+                date: "1776",
+                imageUrl: "https://placeholder.cat/cat",
+                imageAlt: "random cat placeholder",
+                description: "this should pop up when i click. wow thi sis so much information for event number two so much information that it increases the text box size greatly, interfering with spacing this should pop up when i click. wow thi sis so much information for event number two so much information that it increases the text box size greatly, interfering with spacing this should pop up when i click. wow thi sis so much information for event number two so much information that it increases the text box size greatly, interfering with spacing"
+            },
+        ]
+    },
+
+    {
         slideId: "question-input-test",
         type: "question-input",
         heading: "this is a test for question input. say 'yay' or 'cool'. it will teleport you to info-text-video-test if you get it wrong",

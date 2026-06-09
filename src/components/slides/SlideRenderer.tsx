@@ -15,7 +15,7 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
           <h1>{slide.heading}</h1>
           <div className="card-container">
             {slide.cards.map((card, i) => (
-              <div className="card-wrapper" key={i} onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
+              <div className="card-wrapper" key={i} onClick={(e) => e.currentTarget.classList.toggle('card-is-flipped')}>
                 <div className="card-inner">
                   <div className="card-face card-front">
                     <img src={card.imageUrl} alt={card.imageAlt}/>
@@ -32,7 +32,7 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               gap: 1rem;
               perspective: 1000px;
             }
-            .card-wrapper.is-flipped .card-inner {
+            .card-wrapper.card-is-flipped .card-inner {
               transform: rotateY(180deg);
             }
             .card-inner {
@@ -59,6 +59,97 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
             }
             .card-back {
               transform: rotateY(180deg)
+            }
+          `}</style>
+        </div>
+      );
+    
+    case 'info-timeline': 
+      return (
+        <div>
+          <h1>{slide.heading}</h1>
+          <div className="timeline-container">
+            {slide.events.map((event, i) => (
+              <>
+                {i % 2 === 0 ?
+                  <>
+                    <img src={event.imageUrl} alt={event.imageAlt} 
+                      onClick={(e) => e.currentTarget.nextElementSibling?.nextElementSibling?.classList.add('timeline-visible')}
+                    />
+                    <div className="timeline-line"></div>
+                  </>
+                : null}
+                <div className="timeline-reveal">
+                  <h3>{event.name}</h3>
+                  <p>{event.date}</p>
+                  <p>{event.description}</p>
+                </div>
+                {i % 2 === 1 ?
+                  <>
+                    <div className="timeline-line"></div>
+                    <img src={event.imageUrl} alt={event.imageAlt} 
+                      onClick={(e) => e.currentTarget.previousElementSibling?.previousElementSibling?.classList.add('timeline-visible')}
+                    />
+                  </>
+                : null}
+              </>
+              // </div>
+            ))}
+          </div>
+          <style>{/*css*/`
+            .timeline-container {
+              display: grid;
+              grid-template-rows: auto 3px auto;
+              grid-auto-flow: column;
+              grid-auto-columns: 1fr;
+              align-items: center;
+            }
+            .timeline-container > *:nth-child(3n) {
+              align-self: start;
+              margin-top: 1rem;
+            }
+            .timeline-container > *:nth-child(3n - 2) {
+              align-self: end;
+              margin-bottom: 1rem;
+            }
+            .timeline-line {
+              background-color: black;
+              position: relative;
+              width: 100%;
+              height: 100%;
+            }
+            .timeline-line::after {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 10px;
+              height: 10px;
+              border: 3px solid black;
+              border-radius: 50%;
+              background-color: white;
+            }
+            .timeline-container img {
+              cursor: pointer;
+              width: calc(100% - 2rem);
+              max-height: 15rem;
+              object-fit: cover;
+              object-position: center;
+              margin: 0 1rem;
+            }
+            .timeline-reveal {
+              transition: opacity 0.2s ease;
+              opacity: 0;
+              margin: 0 1rem;
+            }
+            .timeline-reveal.timeline-visible {
+              opacity: 1;
+            }
+            @media (max-width: 768px) {
+              timeline-container {
+                flex-direction: column;
+              }
             }
           `}</style>
         </div>

@@ -17,6 +17,7 @@ export interface InfoTimelineSlide {
   type: "info-timeline";
   heading: string;
   events: {
+    name: string;
     date: string;
     imageUrl: string;
     imageAlt: string;
