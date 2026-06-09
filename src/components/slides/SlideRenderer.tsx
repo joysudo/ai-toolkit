@@ -33,7 +33,21 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
           `}</style>
         </div>
       );
-    
+
+    case 'info-text-video':
+      return (
+        <div>
+          <h1>{slide.heading}</h1>
+          <div style={{ display: 'flex' }}>
+            <div>
+              {slide.textContent.subheading && <h3>{slide.textContent.subheading}</h3>}
+              <p>{slide.textContent.body}</p>
+            </div>
+            <iframe src={slide.videoUrl} height="315" width="560" allowFullScreen></iframe>
+          </div>
+        </div>
+      );
+
     case 'question-input':
       const [answer, setAnswer] = useState('');
       const [feedback, setFeedback] = useState('');

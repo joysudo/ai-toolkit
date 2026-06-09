@@ -21,7 +21,7 @@ export const module1: Slide[] = [
             subheading: "this is a text subheading",
             body: "this is body text. body text body text body text. i am manually typing body text in the age of large language modules. and they said ai could replace us."
         },
-        videoEmbedId: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     },
 
     {

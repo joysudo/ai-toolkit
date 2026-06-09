@@ -37,7 +37,7 @@ export interface InfoTextVideoSlide {
     subheading?: string;
     body: string;
   };
-  videoEmbedId: string;
+  videoUrl: string;
 }
 
 export interface QuestionMultipleChoiceSlide {
