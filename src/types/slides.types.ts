@@ -2,11 +2,6 @@ export interface SlideBase {
   slideId: string;
 }
 
-export interface ChatPersona {
-  name: string;
-  iconUrl: string;
-}
-
 export interface InfoCardsSlide {
   type: "info-cards";
   heading: string;
