@@ -73,5 +73,34 @@ export const module1: Slide[] = [
         acceptableAnswers: ["yay", "cool"],
         feedback: "correct hooray",
         remedialSlideId: "info-text-video-test",
+    },
+
+    {
+        slideId: "question-mcq-test",
+        type: "question-mcq",
+        heading: "wow look it's a multiple choice question",
+        options: [
+            {
+                text: "this is option 1. it is incorrect. don't click this.",
+                isCorrect: false,
+                feedback: "you clicked option 1. dumb"
+            },
+            {
+                text: "this is option 2.",
+                isCorrect: false,
+                feedback: "you clicked option 2."
+            },
+            {
+                text: "this is option 3. this is correct. click this one.",
+                isCorrect: true,
+                feedback: "you clicked option 3. that was correct go you"
+            },
+            {
+                text: "this is option 4.",
+                isCorrect: false,
+                feedback: "you clicked option 4."
+            },
+        ]
     }
+
 ] as const;

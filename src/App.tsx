@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { module1 } from './data/slides';
-import { SlideRenderer } from './components/slides/SlideRenderer';
+import { SlideRenderer } from './components/SlideRenderer';
 
 function App() {
   let slides = module1;

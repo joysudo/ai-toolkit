@@ -1,6 +1,43 @@
-import type { Slide } from '../../types/slides.types';
-import { chatPersonas } from '../../data/personas';
+import type { Slide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
+import { chatPersonas } from '../data/personas';
 import { useState } from 'react';
+
+const MCQSlide = ({slide}: {slide: QuestionMultipleChoiceSlide}) => {
+  const [mcqFeedback, setMcqFeedback] = useState('');
+  return (
+    <div>
+      <h1>{slide.heading}</h1>
+      {slide.options.map((option, i) => (
+        <button key={i} onClick={() => setMcqFeedback(option.feedback)}>
+          {option.text}
+        </button>
+      ))}
+      <p>{mcqFeedback}</p>
+    </div>
+  );
+};
+
+const InputSlide = ({ slide, onTeleport }: { slide: QuestionInputSlide; onTeleport(slideId: string): void }) => {
+  const [answer, setAnswer] = useState('');
+  const [inputfeedback, setInputFeedback] = useState('');
+  return (
+    <div>
+      <h1>{slide.heading}</h1>
+      <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Type your answer..."/>
+      <button onClick={() => {
+        if (slide.acceptableAnswers.some((validAnswer) => validAnswer.trim().toLowerCase() === answer.trim().toLowerCase())) {
+          setInputFeedback(slide.feedback);
+          // make this unlock the "next" button later
+        } else {
+          setInputFeedback('Not quite. Try looking at that one again...');
+          // add brief pause
+          onTeleport(slide.remedialSlideId);
+        }
+      }}>Submit</button>
+      {inputfeedback && <p>{inputfeedback}</p>}
+    </div>
+  );
+};
 
 interface Props {
   slide: Slide;
@@ -147,7 +184,7 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               opacity: 1;
             }
             @media (max-width: 768px) {
-              timeline-container {
+              .timeline-container {
                 flex-direction: column;
               }
             }
@@ -194,28 +231,13 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
         </div>
       );
 
+    case 'question-mcq':
+      return <MCQSlide slide={slide}/>;
+    
     case 'question-input':
-      const [answer, setAnswer] = useState('');
-      const [feedback, setFeedback] = useState('');
-      return (
-        <div>
-          <h1>{slide.heading}</h1>
-          <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Type your answer..."/>
-          <button onClick={() => {
-            if (slide.acceptableAnswers.some((validAnswer) => validAnswer.trim().toLowerCase() === answer.trim().toLowerCase())) {
-              setFeedback(slide.feedback);
-              // make this unlock the "next" button later
-            } else {
-              setFeedback('Not quite. Try looking at that one again...');
-              // add brief pause
-              onTeleport(slide.remedialSlideId);
-            }
-          }}>Submit</button>
-          {feedback && <p>{feedback}</p>}
-        </div>
-      );
+      return <InputSlide slide={slide} onTeleport={onTeleport}/>;
     
     default:
-      return <div>Slide type not implemented yet: {slide.type}</div>;
+      return <div>something went wrong (slide type could not be identified in SlideRenderer.tsx)</div>;
   }
 }
