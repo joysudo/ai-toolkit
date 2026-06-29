@@ -93,6 +93,9 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               justify-content: center;
               backface-visibility: hidden;
               background-color: white;
+              padding: 1rem;
+              border-radius: 1rem;
+              box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
             }
             .card-back {
               transform: rotateY(180deg)
@@ -194,24 +197,52 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
 
     case 'info-chat':
       return (
-        <div>
+        <div className="chat-container">
           <h1>{slide.heading}</h1>
           {slide.dialogue.map((text, i) => (
             <div className="chat-pairing" style={{ display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse'}} key={i}>
               <img src={ chatPersonas[i % 2].iconUrl } />
-              <p style={{ textAlign: i % 2 === 0 ? 'left' : 'right' }}>
+              <p className={i % 2 === 0 ? 'bubble-left' : 'bubble-right'}>
                 {text}
               </p>
             </div>
           ))}
           <style>{/*css*/`
+            .chat-container {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              margin: 0 auto;
+            }
             .chat-pairing {
+              display: flex;
+              align-items: flex-end;
+              gap: 0.75rem;
+              
               img {
-                width: 10%;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+                object-fit: cover;
               }
+              
               p {
-                width: 90%;
+                margin: 0;
+                padding: 0.75rem 1rem;
+                max-width: 70%;
+                border-radius: 1.25rem;
+                line-height: 1.4;
               }
+            }
+            .bubble-left {
+              background-color: #f0f0f0;
+              color: #000000;
+              border-bottom-left-radius: 0.25rem !important;
+            }
+            .bubble-right {
+              background-color: #39DC78;
+              color: #ffffff;
+              border-bottom-right-radius: 0.25rem !important;
             }
           `}</style>
         </div>
@@ -220,9 +251,9 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
     case 'info-text-video':
       return (
         <div>
-          <h1>{slide.heading}</h1>
-          <div style={{ display: 'flex' }}>
-            <div>
+          <div style={{ display: 'flex', gap: '3rem' }}>
+            <div style={{ flexBasis: '50%' }}>
+              <h1>{slide.heading}</h1>
               {slide.textContent.subheading && <h3>{slide.textContent.subheading}</h3>}
               <p>{slide.textContent.body}</p>
             </div>
