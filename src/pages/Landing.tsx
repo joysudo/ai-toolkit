@@ -24,16 +24,18 @@ export function Landing() {
           {loading ? (
             <span>Loading...</span>
           ) : user ? (
-            <Link to="/dashboard">
-              <button>Enter</button>
-            </Link>
+            <div>
+              <Link to="/dashboard">
+                <button>Enter</button>
+              </Link>
+            </div>
           ) : (
-            <div style={{ display: "flex" }}>
+            <div>
               <Link to="/login">
                 <button>Login</button>
               </Link>
               <Link to="/register">
-                <button>Sign Up</button>
+                <button>Register</button>
               </Link>
             </div>
           )}
