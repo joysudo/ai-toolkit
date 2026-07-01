@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
-import { Navigate } from "react-router";
 import { Dashboard } from './pages/Dashboard';
+import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Lesson } from './pages/Lesson';
@@ -11,7 +11,7 @@ import { module3 } from './data/module3.ts';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/" element={<Landing/>}/>
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
