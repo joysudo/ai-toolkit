@@ -7,7 +7,7 @@ const modules = [
     // have to manually edit this and App.tsx whenever new modules are added
 ]
 
-export function Profile() {
+export function Dashboard() {
     return (
         <div>
             <h1>here are the modules</h1>
