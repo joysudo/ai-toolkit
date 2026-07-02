@@ -1,18 +1,64 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { saveProgress, getProgress } from '../firebase/progress';
+import { useAuth } from '../firebase/auth';
 import type { Slide } from '../types/slides.types';
 import { SlideRenderer } from '../components/SlideRenderer';
 import wormyLogo from '../assets/wormy-logo.png';
 import { Link } from 'react-router';
 
-export function Lesson({ slides }: { slides: Slide[] }) {
+interface Props {
+  moduleId: string;
+  slides: Slide[];
+}
+
+export function Lesson({ moduleId, slides }: Props) {
+  const { user } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [highestUnlocked, setHighestUnlocked] = useState(0);
   const [tocOpen, setTocOpen] = useState(false);
+  const lastSavedRef = useRef({ slideIndex: 0, highestUnlocked: 0 });
 
+  // save progress
   useEffect(() => {
     if (currentSlide > highestUnlocked) setHighestUnlocked(currentSlide);
   }, [currentSlide]);
+    useEffect(() => {
+    if (!user) return;
+    const lastSaved = lastSavedRef.current;
+    if (
+      currentSlide === lastSaved.slideIndex &&
+      highestUnlocked === lastSaved.highestUnlocked
+    ) {
+      return; // nothing changed, skip the write
+    }
+    const timeoutId = setTimeout(() => {
+      const completed = highestUnlocked === slides.length - 1;
+      saveProgress(user.uid, moduleId, {
+        currentSlideIndex: currentSlide,
+        highestUnlocked,
+        completed,
+      });
+      lastSavedRef.current = { slideIndex: currentSlide, highestUnlocked };
+    }, 500); // debounce for if the user spams button
+    return () => clearTimeout(timeoutId);
+  }, [currentSlide, highestUnlocked, user, moduleId, slides.length]);
 
+  useEffect(() => {
+    if (!user) return;
+    const loadProgress = async () => {
+      const saved = await getProgress(user.uid, moduleId);
+      if (saved) {
+        setCurrentSlide(saved.currentSlideIndex);
+        setHighestUnlocked(saved.highestUnlocked);
+        lastSavedRef.current = {
+          slideIndex: saved.currentSlideIndex,
+          highestUnlocked: saved.highestUnlocked,
+        };
+      }
+    };
+    loadProgress();
+  }, [user, moduleId]);
+  
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) setCurrentSlide(currentSlide + 1);
   }

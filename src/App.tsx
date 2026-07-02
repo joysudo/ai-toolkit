@@ -14,7 +14,7 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
       {modules.map((mod) => (
-        <Route path={`/module/${mod.id}`} element={<Lesson slides={mod.getSlides()}/>} />
+        <Route path={`/module/${mod.id}`} element={<Lesson moduleId={mod.id} slides={mod.getSlides()}/>} />
       ))}
     </Routes>
   );
