@@ -40,6 +40,126 @@ img {
   height: auto;
 }
 
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 5rem);
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 24rem;
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.auth-field label {
+  font-size: 0.875rem;
+  color: dimgray;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 1rem;
+  color: var(--dark);
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.auth-field input:focus {
+  border-color: var(--accent);
+}
+
+.auth-error {
+  font-size: 0.875rem;
+  color: dimgray;
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-left: 4px solid gray;
+  border-radius: 0.5rem;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark);
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.auth-submit-btn:hover {
+  opacity: 0.9;
+}
+
+.auth-footer {
+  font-size: 0.875rem;
+  color: dimgray;
+  text-align: center;
+}
+
+.auth-footer a {
+  color: var(--dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.auth-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.25rem 0;
+}
+
+.auth-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.auth-radio-label input[type="radio"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 .module-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));

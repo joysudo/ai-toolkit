@@ -22,75 +22,77 @@ export function Register() {
   };
 
   return (
-    <div>
-      <h1>Create Account</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </div>
-
-        <div>
-          <label>I am a:</label>
-          <div>
-            <label>
-              <input
-                type="radio"
-                value="student"
-                checked={role === "student"}
-                onChange={() => setRole("student")}
-              />
-              Student
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="teacher"
-                checked={role === "teacher"}
-                onChange={() => setRole("teacher")}
-              />
-              Teacher
-            </label>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1  className="auth-title">Create Account</h1>
+        <form onSubmit={handleSubmit}  className="auth-form">
+          <div className="auth-field">
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
           </div>
-        </div>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+          <div className="auth-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit">Register</button>
-      </form>
+          <div className="auth-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+            />
+          </div>
 
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+          <div className="auth-field">
+            <label>I am a:</label>
+            <div className="auth-radio-group">
+              <label className="auth-radio-label">
+                <input
+                  type="radio"
+                  value="student"
+                  checked={role === "student"}
+                  onChange={() => setRole("student")}
+                />
+                Student
+              </label>
+              <label className="auth-radio-label">
+                <input
+                  type="radio"
+                  value="teacher"
+                  checked={role === "teacher"}
+                  onChange={() => setRole("teacher")}
+                />
+                Teacher
+              </label>
+            </div>
+          </div>
+
+          {error && <p  className="auth-error">{error}</p>}
+
+          <button type="submit"  className="auth-submit-btn">Register</button>
+        </form>
+
+        <p  className="auth-footer">
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
+      </div>
     </div>
   );
 }
