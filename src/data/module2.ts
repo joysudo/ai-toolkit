@@ -12,12 +12,34 @@ export const module2: Slide[] = [
     },
     {
         slideId: "info-what-learn",
-        type: "info-text-video",
-        heading: "What are we going to learn?",
-        textContent: {
-            body: "This session allows you to understand the importance of bias and ethics in order to create an AI. As you move along you will learn why we need ethics and bias by receiving real world examples.\n\nKeys:\n1. Bias: Bias is essential for making any AI and we'll show you how\n2. How it's related to AI: Bias is the difference between a good AI vs less liked AI and we want people to know the differences.\n3. Ethics: Ethics can be always be tied back to what right from wrong is.\n4. How it can be related to AI: An AI needs a basic understanding of human morals."
-        },
-        videoUrl: ""
+        type: "info-cards",
+        heading: "Understanding Bias and Ethics in AI",
+        cards: [
+            {
+                imageUrl: "",
+                imageAlt: "Icon representing bias in AI",
+                cardHeading: "Bias",
+                bodyText: "Bias is essential for making any AI and we'll show you how bias plays a crucial role in AI development and decision-making."
+            },
+            {
+                imageUrl: "",
+                imageAlt: "Icon showing the connection between bias and AI",
+                cardHeading: "How it's related to AI",
+                bodyText: "Bias is the difference between a good AI vs less liked AI and we want people to know the differences between biased and unbiased AI systems."
+            },
+            {
+                imageUrl: "",
+                imageAlt: "Icon representing ethics",
+                cardHeading: "Ethics",
+                bodyText: "Ethics can always be tied back to what right from wrong is, forming the foundation for responsible AI development."
+            },
+            {
+                imageUrl: "",
+                imageAlt: "Icon showing ethics in AI",
+                cardHeading: "How it can be related to AI",
+                bodyText: "An AI needs a basic understanding of human morals to make ethical decisions and interact appropriately with users."
+            }
+        ]
     },
     {
         slideId: "info-bias-basics",
