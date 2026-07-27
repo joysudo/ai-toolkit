@@ -16,19 +16,19 @@ export const module1: Slide[] = [
         heading: "What are we going to learn?",
         cards: [
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "Icon representing the definition of AI",
                 cardHeading: "The definition of AI",
                 bodyText: "Learn what Artificial Intelligence actually means."
             },
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "Icon representing the history of AI",
                 cardHeading: "The history of AI",
                 bodyText: "Explore the timeline of AI development from philosophers to ChatGPT."
             },
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "Icon representing the types of AI",
                 cardHeading: "The types of AI",
                 bodyText: "Understand the differences between Narrow, General, and Superintelligent AI."
@@ -47,7 +47,7 @@ export const module1: Slide[] = [
     {
         slideId: "4",
         type: "info-chat",
-        heading: "",
+        heading: "Dialogue",
         dialogue: [
             "I keep hearing about this AI thing but I don't understand!",
             "Understanding AI can be difficult because there are so many definitions out there, however, here is a simplified definition: AI, or Artificial Intelligence, is a computer science field that is based on creating machines and programs that can complete tasks that would normally only be done by humans. AI programs can analyze, translate, solve problems, and make decisions.",
@@ -80,35 +80,35 @@ export const module1: Slide[] = [
             {
                 name: "Philosophers such as Aristotle and Descartes wondered if human thinking could be modeled logically.",
                 date: "Not provided",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A photo of a Greek philosopher's statue",
                 description: "Early philosophical foundations of logical thinking."
             },
             {
                 name: "It wasn't until the 19th century that digital computing was started when mathematician George Boole developed Boolean algebra.",
                 date: "Not provided",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A diagram showing boolean algebra operations",
                 description: "Boolean algebra laid the groundwork for digital computing."
             },
             {
                 name: "In 1936 Alan Turing, coined the idea of a 'universal machine' that could perform any computation. This was a founding concept of computer.",
                 date: "1936",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A photo of an old and large computer",
                 description: "Turing's universal machine concept became foundational to computing."
             },
             {
                 name: "In 1956, the term AI or Artificial Intelligence, was coined by John McCarthy during the Dartmouth Conference. This is considered the birthplace of AI as a field.",
                 date: "1956",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A photo taken at the Dartmouth Conference",
                 description: "The Dartmouth Conference is considered the birthplace of AI."
             },
             {
                 name: "During the 1950-70s, three early types of AI were formed. Eliza was considered the first chatbot, SHRDLU, a program for understanding natural language Dendral used for chemical analysis.",
                 date: "1950s-70s",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A generic picture of programming",
                 description: "Early AI programs included chatbots, natural language processing, and chemical analysis tools."
             }
@@ -122,35 +122,35 @@ export const module1: Slide[] = [
             {
                 name: "The 70s and 80s had limited advances because AI couldn't scale to real-life problems. During the 90s, AI shifted to statistical and data driven methods that led to machine learning where systems are trained with data rather than hard-coded rules.",
                 date: "1970s - 80s",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A generic photo of circuits shaped to make a human face",
                 description: "AI faced limitations but later shifted to machine learning approaches."
             },
             {
                 name: "AI began advancing and in 1997, IBM's deep blue won against chess champion Garry Kasparov.",
                 date: "1997",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "An image of the match between Garry Kasparov and Deep Blue",
                 description: "Deep Blue defeated chess champion Garry Kasparov in 1997."
             },
             {
                 name: "In the 2010s, Geoffrey Hinton, Yann LeCun, and Yoshua Bengio pioneered deep learning, which is a type of machine learning.",
                 date: "Not provided",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "An image of the three men side by side",
                 description: "Deep learning pioneers advanced the field significantly."
             },
             {
                 name: "In 2012, because of deep learning ImageNet was able to go to great lengths in image recognition. In 2016, AlphaGo defeated world champion Lee Sedol in the board game Go.",
                 date: "2012 & 2016",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "Lee Sedol making a defeated face after losing to AlphaGo",
                 description: "AI achieved major milestones in image recognition and board games."
             },
             {
                 name: "In November of 2022, ChatGPT was released for public use. Today, we have generative AI such as GPT, BERT, and DALL E, which we can use to generate ideas and images, translate languages, and much more.",
                 date: "2022",
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "ChatGPT's Logo",
                 description: "ChatGPT and other generative AI tools became widely available."
             }
@@ -193,7 +193,7 @@ export const module1: Slide[] = [
     {
         slideId: "10",
         type: "info-chat",
-        heading: "",
+        heading: "Dialogue",
         dialogue: [
             "Alright! I now understand the timeline of AI development. But what types of AI are there?",
             "Great question! Let's talk about it. Click the button to continue."
@@ -252,7 +252,7 @@ export const module1: Slide[] = [
         heading: "What is another name for Narrow AI?",
         acceptableAnswers: ["Weak AI", "Weak"],
         feedback: "Correct",
-        remedialSlideId: ""
+        remedialSlideId: "11"
     },
     {
         slideId: "14",
@@ -260,7 +260,7 @@ export const module1: Slide[] = [
         heading: "What is another name for General AI?",
         acceptableAnswers: ["Strong AI", "Strong"],
         feedback: "Correct",
-        remedialSlideId: ""
+        remedialSlideId: "11"
     },
     {
         slideId: "15",
@@ -287,7 +287,7 @@ export const module1: Slide[] = [
     {
         slideId: "16",
         type: "info-chat",
-        heading: "",
+        heading: "Dialogue slide",
         dialogue: [
             "AI is slowly making more sense to me. However, I still have questions left about the ethics and bias of AI, how AI actually works, AI Safety, and the careers and future of AI.",
             "Well, I'm glad you've at least begun to understand what AI is. Thankfully, in these next modules, we will be talking about those."
