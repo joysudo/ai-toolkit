@@ -3,7 +3,7 @@ import { saveProgress, getProgress } from '../firebase/progress';
 import { useAuth } from '../firebase/auth';
 import type { Slide } from '../types/slides.types';
 import { SlideRenderer } from '../components/SlideRenderer';
-import wormyLogo from '../assets/wormy-logo.png';
+import wormyLogo from '../assets/logo-placeholder.png';
 import { Link } from 'react-router';
 
 interface Props {
@@ -17,6 +17,7 @@ export function Lesson({ moduleId, slides }: Props) {
   const [highestUnlocked, setHighestUnlocked] = useState(0);
   const [tocOpen, setTocOpen] = useState(false);
   const lastSavedRef = useRef({ slideIndex: 0, highestUnlocked: 0 });
+  const tocRef = useRef<HTMLDivElement>(null);
 
   // save progress
   useEffect(() => {
@@ -58,6 +59,39 @@ export function Lesson({ moduleId, slides }: Props) {
     };
     loadProgress();
   }, [user, moduleId]);
+
+  // detect toc clicks
+  useEffect(() => {
+    if (!tocOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (tocRef.current && !tocRef.current.contains(event.target as Node)) {
+        setTocOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [tocOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return; 
+      }
+      if (e.key === 'ArrowRight' || e.key === 'd') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'a') prevSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSlide]);
   
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) setCurrentSlide(currentSlide + 1);
@@ -83,7 +117,7 @@ export function Lesson({ moduleId, slides }: Props) {
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">{/* Icon from coolicons by Kryston Schwarze - https://creativecommons.org/licenses/by/4.0/ */}<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17h18M3 12h18M3 7h18"/></svg>
         </button>
         {tocOpen && (
-          <div style={{position: 'absolute', top: '100%', left: '0', background: 'white', padding: '1rem', zIndex: '50'}}>
+          <div className="toc-dropdown" ref={tocRef}>
             {slides.map((slide, i) => {
               const isUnlocked = i <= highestUnlocked;
               const isCurrent = i === currentSlide;
@@ -91,6 +125,7 @@ export function Lesson({ moduleId, slides }: Props) {
                 <div
                   key={slide.slideId}
                   onClick={() => isUnlocked && jumpToSlide(i)}
+                  className="toc-item"
                   style={{
                     padding: '0.5rem 1rem',
                     cursor: isUnlocked ? 'pointer' : 'not-allowed',
@@ -99,13 +134,15 @@ export function Lesson({ moduleId, slides }: Props) {
                     background: isCurrent ? '#e0e0e0' : 'transparent',
                     // fix this styling later so it's not arbitrary numbers and random values
                   }}
-                >{isUnlocked ? slide.heading : '???'}</div>
+                >{isUnlocked ? (slide.heading || ' ') : '???'}</div>
               );
             })}
           </div>
         )}
-        <img src={wormyLogo} alt="" style={{width: 'auto', height: '5vh'}}/>
-        <Link to='/' className="home-btn">
+        <Link to='/'>
+          <img src={wormyLogo} alt="" className="logo"/>
+        </Link>
+        <Link to='/dashboard' className="home-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">{/* Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE */}<path d="M5.85 17.1q1.275-.975 2.85-1.537T12 15t3.3.563t2.85 1.537q.875-1.025 1.363-2.325T20 12q0-3.325-2.337-5.663T12 4T6.337 6.338T4 12q0 1.475.488 2.775T5.85 17.1M12 13q-1.475 0-2.488-1.012T8.5 9.5t1.013-2.488T12 6t2.488 1.013T15.5 9.5t-1.012 2.488T12 13m0 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
         </Link>
       </div>
@@ -115,15 +152,22 @@ export function Lesson({ moduleId, slides }: Props) {
             <path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z" />
           </svg>
         </button>
-        <SlideRenderer slide={slides[currentSlide]} onTeleport={teleport} />
+        <div key={currentSlide} className="slide-wrapper slide-fade-in">
+          <SlideRenderer slide={slides[currentSlide]} onTeleport={teleport} />
+        </div>
         <button onClick={nextSlide} disabled={currentSlide === slides.length - 1} className="nav-btn next-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
             <path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z" />
           </svg>
         </button>
       </div>
+      <div className="lesson-progress-bar">
+        <div className="lesson-progress-max" style={{ width: `${Math.round(((highestUnlocked + 1) / slides.length) * 100)}%` }}></div>
+        <div className="lesson-progress-current" style={{ width: `${Math.round(((currentSlide + 1) / slides.length) * 100)}%` }}></div>
+      </div>
       <style>{/*css*/`
         .nav-bar {
+          box-sizing: border-box;
           position: fixed;
           top: 0;
           left: 0;
@@ -135,11 +179,38 @@ export function Lesson({ moduleId, slides }: Props) {
           z-index: 10;
           padding: 1rem 1.5rem;
           background-color: white;
-          box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+          // box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar > a {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+
+        .logo {
+          object-fit: contain;
+          max-height: 100%;
+          width: auto;
         }
 
         .nav-bar svg {
           display: block;
+        }
+
+        .slide-fade-in {
+          animation: slideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          // animation: slideFadeIn 0.35s ease-in forwards;
+        }
+
+        @keyframes slideFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(18px);
+          } 100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .slide-container {
@@ -195,6 +266,79 @@ export function Lesson({ moduleId, slides }: Props) {
         .nav-btn.next-btn { 
           right: 2rem;
           transform: scaleX(-1) translateY(-50%);
+        }
+
+        .toc-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 1.5rem;
+          width: 18rem;
+          max-height: 20rem;
+          overflow-y: auto;
+          background-color: white;
+          border: 1px solid lightgray;
+          border-radius: 0.5rem;
+          padding: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          z-index: 50;
+          animation: tocSlideDown 0.15s ease-out forwards;
+        }
+
+        .toc-item {
+          width: 100%;
+          text-align: left;
+          background: none;
+          border: none;
+          border-radius: 0.25rem;
+          padding: 0.25rem 0.5rem;
+          font-size: 0.875rem;
+          color: var(--dark);
+          cursor: pointer;
+          transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .toc-item:hover {
+          background-color: lightgray !important;
+        }
+
+        @keyframes tocSlideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-0.5rem);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .lesson-progress-bar {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0.5rem;
+          background-color: gray;
+        }
+
+        .lesson-progress-max {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: lightgray;
+          transition: width 0.2s ease;
+        }
+
+        .lesson-progress-current {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: var(--accent);
+          transition: width 0.2s ease;
         }
       `}</style>
     </>

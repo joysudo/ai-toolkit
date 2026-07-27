@@ -5,14 +5,16 @@ import { useState } from 'react';
 const MCQSlide = ({slide}: {slide: QuestionMultipleChoiceSlide}) => {
   const [mcqFeedback, setMcqFeedback] = useState('');
   return (
-    <div>
-      <h1>{slide.heading}</h1>
-      {slide.options.map((option, i) => (
-        <button key={i} onClick={() => setMcqFeedback(option.feedback)}>
-          {option.text}
-        </button>
-      ))}
-      <p>{mcqFeedback}</p>
+    <div className="mcq-container">
+      <h1 className="mcq-heading">{slide.heading}</h1>
+      <div className="mcq-options">
+        {slide.options.map((option, i) => (
+          <button key={i} onClick={() => setMcqFeedback(option.feedback)} className="mcq-option-btn">
+            {option.text}
+          </button>
+        ))}
+      </div>
+      {mcqFeedback && <p className="mcq-feedback">{mcqFeedback}</p>}
     </div>
   );
 };
@@ -68,6 +70,10 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               display: flex;
               gap: 1rem;
               perspective: 1000px;
+              flex-wrap: wrap;
+            }
+            .card-wrapper {
+              flex: 1 1 16rem;
             }
             .card-wrapper.card-is-flipped .card-inner {
               transform: rotateY(180deg);
@@ -95,7 +101,13 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               background-color: white;
               padding: 1rem;
               border-radius: 1rem;
-              box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+              border: 1px solid lightgray;
+            }
+            .card-front img {
+              border-radius: 0.5rem;
+              display: block;
+              width: 100%;
+              object-fit: cover;
             }
             .card-back {
               transform: rotateY(180deg)
