@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { auth } from "../firebase/config";
 import { onAuthStateChanged, type User } from "firebase/auth";
+import wormyLogo from '../assets/logo-placeholder.png';
 
 const MODULES = [
   {
@@ -55,9 +56,9 @@ export function Landing() {
   }, []);
 
   return (
-<div className="landing-wrapper">
+    <div className="landing-wrapper">
       <header className="landing-header">
-        <h2 className="landing-logo">AI Toolkit</h2>
+        <img src={wormyLogo} alt="" className="logo landing-logo"/>
         <nav className="landing-nav">
           {loading ? (
             <span className="landing-loading">Loading...</span>
@@ -156,6 +157,10 @@ export function Landing() {
           font-size: 1.25rem;
           font-weight: 700;
           color: var(--dark);
+        }
+
+        .landing-logo {
+          max-height: 1.5rem;
         }
 
         .landing-auth-btns {

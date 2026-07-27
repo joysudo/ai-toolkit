@@ -37,7 +37,7 @@ export function Dashboard() {
 
   return (
     <div>
-      <button onClick={handleSignout}>Sign Out</button>
+      <button onClick={handleSignout} className="mcq-option-btn" style={{width: "fit-content", marginBottom: "1rem", padding: "0.5rem 1rem"}}>Sign Out</button>
       <h1>Modules</h1>
       <div className="module-cards-grid">
         {modules.map((mod, index) => {
