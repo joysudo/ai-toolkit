@@ -3,7 +3,7 @@ import { saveProgress, getProgress } from '../firebase/progress';
 import { useAuth } from '../firebase/auth';
 import type { Slide } from '../types/slides.types';
 import { SlideRenderer } from '../components/SlideRenderer';
-import wormyLogo from '../assets/wormy-logo.png';
+import wormyLogo from '../assets/logo-placeholder.png';
 import { Link } from 'react-router';
 
 interface Props {

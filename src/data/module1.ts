@@ -205,19 +205,19 @@ export const module1: Slide[] = [
         heading: "Three Primary Types of AI",
         cards: [
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A minimal and general drawing of a computer",
                 cardHeading: "Narrow AI",
                 bodyText: "Narrow AI, also called weak AI, is the simplest form of AI and the form that AI is currently in. Narrow AI is for one specific task or purpose, and an example would be the Netflix algorithm or even self-driving cars."
             },
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A minimal drawing of a cloud with computer wires coming from the bottom",
                 cardHeading: "General AI",
                 bodyText: "General AI (or Strong AI) is a theoretical type of intelligence that could match human capabilities. It would not only learn and adapt but also perform a wide range of tasks across different fields. Example: Robots performing intellectual and physical tasks."
             },
             {
-                imageUrl: "",
+                imageUrl: "https://placeholder.cat/cat",
                 imageAlt: "A generic drawing of a simple computer robot",
                 cardHeading: "Superintelligent AI",
                 bodyText: "Superintelligent AI is a hypothetical intelligence that would surpass humans in almost every task. Thankfully, this concept exists only in science-fiction, through the likes of Ultron in Avengers or The Entity in Mission: Impossible."

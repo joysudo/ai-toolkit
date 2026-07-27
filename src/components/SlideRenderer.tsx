@@ -68,6 +68,10 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               display: flex;
               gap: 1rem;
               perspective: 1000px;
+              flex-wrap: wrap;
+            }
+            .card-wrapper {
+              flex: 1 1 16rem;
             }
             .card-wrapper.card-is-flipped .card-inner {
               transform: rotateY(180deg);
@@ -95,7 +99,13 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               background-color: white;
               padding: 1rem;
               border-radius: 1rem;
-              box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+              border: 1px solid lightgray;
+            }
+            .card-front img {
+              border-radius: 0.5rem;
+              display: block;
+              width: 100%;
+              object-fit: cover;
             }
             .card-back {
               transform: rotateY(180deg)
