@@ -25,18 +25,25 @@ const InputSlide = ({ slide, onTeleport }: { slide: QuestionInputSlide; onTelepo
   return (
     <div>
       <h1>{slide.heading}</h1>
-      <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Type your answer..."/>
-      <button onClick={() => {
-        if (slide.acceptableAnswers.some((validAnswer) => validAnswer.trim().toLowerCase() === answer.trim().toLowerCase())) {
-          setInputFeedback(slide.feedback);
-          // make this unlock the "next" button later
-        } else {
-          setInputFeedback('Not quite. Try looking at that one again...');
-          // add brief pause
-          onTeleport(slide.remedialSlideId);
-        }
-      }}>Submit</button>
-      {inputfeedback && <p>{inputfeedback}</p>}
+      <form 
+        className="input-slide-form" 
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Type your answer..." className="input-slide-field"/>
+        <button onClick={() => {
+          if (slide.acceptableAnswers.some((validAnswer) => validAnswer.trim().toLowerCase() === answer.trim().toLowerCase())) {
+            setInputFeedback(slide.feedback);
+            // make this unlock the "next" button later
+          } else {
+            setInputFeedback('Not quite. Try looking at that one again...');
+            // add brief pause
+            onTeleport(slide.remedialSlideId);
+          }
+        }} className="input-slide-btn">Submit</button>
+      </form>
+      {inputfeedback && <p className="input-slide-feedback">{inputfeedback}</p>}
     </div>
   );
 };

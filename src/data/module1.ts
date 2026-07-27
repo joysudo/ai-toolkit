@@ -159,7 +159,7 @@ export const module1: Slide[] = [
     {
         slideId: "8",
         type: "question-mcq",
-        heading: "True or False",
+        heading: "True or False: Aristotle invented the concept of the universal machine.",
         options: [
             {
                 text: "True",
@@ -176,7 +176,7 @@ export const module1: Slide[] = [
     {
         slideId: "9",
         type: "question-mcq",
-        heading: "True or False",
+        heading: "True or False: The term Artificial Intelligence was first coined at Dartmouth University.",
         options: [
             {
                 text: "True",
