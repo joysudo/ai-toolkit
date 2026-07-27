@@ -58,6 +58,25 @@ export function Lesson({ moduleId, slides }: Props) {
     };
     loadProgress();
   }, [user, moduleId]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return; 
+      }
+      if (e.key === 'ArrowRight' || e.key === 'd') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'a') prevSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSlide]);
   
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) setCurrentSlide(currentSlide + 1);
