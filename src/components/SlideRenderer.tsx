@@ -5,14 +5,16 @@ import { useState } from 'react';
 const MCQSlide = ({slide}: {slide: QuestionMultipleChoiceSlide}) => {
   const [mcqFeedback, setMcqFeedback] = useState('');
   return (
-    <div>
-      <h1>{slide.heading}</h1>
-      {slide.options.map((option, i) => (
-        <button key={i} onClick={() => setMcqFeedback(option.feedback)}>
-          {option.text}
-        </button>
-      ))}
-      <p>{mcqFeedback}</p>
+    <div className="mcq-container">
+      <h1 className="mcq-heading">{slide.heading}</h1>
+      <div className="mcq-options">
+        {slide.options.map((option, i) => (
+          <button key={i} onClick={() => setMcqFeedback(option.feedback)} className="mcq-option-btn">
+            {option.text}
+          </button>
+        ))}
+      </div>
+      {mcqFeedback && <p className="mcq-feedback">{mcqFeedback}</p>}
     </div>
   );
 };
