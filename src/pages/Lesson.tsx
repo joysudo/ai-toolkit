@@ -134,7 +134,9 @@ export function Lesson({ moduleId, slides }: Props) {
             <path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z" />
           </svg>
         </button>
-        <SlideRenderer slide={slides[currentSlide]} onTeleport={teleport} />
+        <div key={currentSlide} className="slide-wrapper slide-fade-in">
+          <SlideRenderer slide={slides[currentSlide]} onTeleport={teleport} />
+        </div>
         <button onClick={nextSlide} disabled={currentSlide === slides.length - 1} className="nav-btn next-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
             <path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z" />
@@ -159,6 +161,21 @@ export function Lesson({ moduleId, slides }: Props) {
 
         .nav-bar svg {
           display: block;
+        }
+
+        .slide-fade-in {
+          animation: slideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          // animation: slideFadeIn 0.35s ease-in forwards;
+        }
+
+        @keyframes slideFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(18px);
+          } 100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .slide-container {
