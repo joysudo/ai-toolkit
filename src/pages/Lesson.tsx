@@ -143,6 +143,10 @@ export function Lesson({ moduleId, slides }: Props) {
           </svg>
         </button>
       </div>
+      <div className="lesson-progress-bar">
+        <div className="lesson-progress-max" style={{ width: `${Math.round(((highestUnlocked + 1) / slides.length) * 100)}%` }}></div>
+        <div className="lesson-progress-current" style={{ width: `${Math.round(((currentSlide + 1) / slides.length) * 100)}%` }}></div>
+      </div>
       <style>{/*css*/`
         .nav-bar {
           position: fixed;
@@ -231,6 +235,33 @@ export function Lesson({ moduleId, slides }: Props) {
         .nav-btn.next-btn { 
           right: 2rem;
           transform: scaleX(-1) translateY(-50%);
+        }
+
+        .lesson-progress-bar {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0.5rem;
+          background-color: gray;
+        }
+
+        .lesson-progress-max {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: lightgray;
+          transition: width 0.2s ease;
+        }
+
+        .lesson-progress-current {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: var(--accent);
+          transition: width 0.2s ease;
         }
       `}</style>
     </>
