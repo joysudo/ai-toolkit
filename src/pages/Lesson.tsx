@@ -123,8 +123,10 @@ export function Lesson({ moduleId, slides }: Props) {
             })}
           </div>
         )}
-        <img src={wormyLogo} alt="" style={{width: 'auto', height: '5vh'}}/>
-        <Link to='/' className="home-btn">
+        <Link to='/'>
+          <img src={wormyLogo} alt="" className="logo"/>
+        </Link>
+        <Link to='/dashboard' className="home-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">{/* Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE */}<path d="M5.85 17.1q1.275-.975 2.85-1.537T12 15t3.3.563t2.85 1.537q.875-1.025 1.363-2.325T20 12q0-3.325-2.337-5.663T12 4T6.337 6.338T4 12q0 1.475.488 2.775T5.85 17.1M12 13q-1.475 0-2.488-1.012T8.5 9.5t1.013-2.488T12 6t2.488 1.013T15.5 9.5t-1.012 2.488T12 13m0 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
         </Link>
       </div>
@@ -149,6 +151,7 @@ export function Lesson({ moduleId, slides }: Props) {
       </div>
       <style>{/*css*/`
         .nav-bar {
+          box-sizing: border-box;
           position: fixed;
           top: 0;
           left: 0;
@@ -160,7 +163,19 @@ export function Lesson({ moduleId, slides }: Props) {
           z-index: 10;
           padding: 1rem 1.5rem;
           background-color: white;
-          box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+          // box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar > a {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+
+        .logo {
+          object-fit: contain;
+          max-height: 100%;
+          width: auto;
         }
 
         .nav-bar svg {
