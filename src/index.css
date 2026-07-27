@@ -20,7 +20,7 @@ body {
   box-sizing: inherit;
 }
 
-button {
+button, textarea, input, form {
   font-family: inherit;
 }
 
