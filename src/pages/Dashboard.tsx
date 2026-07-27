@@ -38,10 +38,19 @@ export function Dashboard() {
       <h1>here are the modules</h1>
       <div className="module-cards-grid">
         {modules.map((mod) => (
-          <div className="module-card">
-            <Link to={`/module/${mod.id}`}>{mod.name}</Link>
-            <p>{mod.slideCount} slides</p>
-          </div>
+          <Link to={`/module/${mod.id}`} className="module-card-link">
+            <div className="module-card">
+              <img
+                src={mod.imageUrl || 'https://via.placeholder.com/300x180'} 
+                alt={mod.name} 
+                className="module-card-img"
+              />
+              <div className="module-card-body">
+                <h2 className="module-card-title">{mod.name}</h2>
+                <p className="module-card-subtitle">{mod.slideCount} slides</p>
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
