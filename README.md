@@ -1,3 +1,30 @@
+# Git Commands + Guide setup
+
+1. The GitHub Setup (Fork & Clone)
+    Click "Fork": Do this on the original GitHub web page to create your own remote copy.
+   
+   -  git clone <your-fork-url>: Downloads your personal fork to your computer.
+   -  cd <repository-name>: Moves your terminal into the project folder.
+
+2. Configure the Original Project
+    git remote add upstream <original-repo-url>: Links your local project to the original       r       repository   so you can sync future updates.
+
+3. Make and Commit Changes
+   git checkout -b <new-branch-name>: Creates and switches to a new branch for your feature.
+
+Edit your files: Make your code changes in your text editor.
+- git status: Verifies which files you modified.
+- git add .: Stages all of your modified files.
+- git commit -m "Description of changes": Saves your staged changes locally.
+
+4. Push and Propose
+   git push origin <new-branch-name>: Uploads your local branch up to your GitHub fork.
+
+   Pull Request: Open GitHub in your browser and click "Compare & pull request" to send your           changes to the original project owner.
+
+---
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
