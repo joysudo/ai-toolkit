@@ -22,6 +22,111 @@ Edit your files: Make your code changes in your text editor.
 
    Pull Request: Open GitHub in your browser and click "Compare & pull request" to send your           changes to the original project owner.
 
+# Below here is more Additional resources within GitHub - Command Lines. 
+
+SETUP AND CONFIGURATION
+--------------------------------------------------------------------------------
+git init
+-> Initializes a new local repository.
+
+git clone <url>
+-> Copies a remote repository locally.
+
+git config --global user.name "<name>"
+-> Sets your commit username.
+
+git config --global user.email "<email>"
+-> Sets your commit email.
+
+
+MANAGING CHANGES
+--------------------------------------------------------------------------------
+git status
+-> Shows modified and staged files.
+
+git add <file>
+-> Stages a specific file.
+
+git add .
+-> Stages all modified files.
+
+git commit -m "<message>"
+-> Saves staged changes locally.
+
+git commit --amend
+-> Modifies the last commit.
+
+
+BRANCHING AND MERGING
+--------------------------------------------------------------------------------
+git branch
+-> Lists all local branches.
+
+git branch <branch-name>
+-> Creates a new branch.
+
+git checkout <branch-name>
+-> Switches to a branch.
+
+git checkout -b <branch-name>
+-> Creates and switches branch.
+
+git merge <branch-name>
+-> Merges branch into current.
+
+git branch -d <branch-name>
+-> Deletes a local branch.
+
+
+REMOTE REPOSITORIES
+--------------------------------------------------------------------------------
+git remote add origin <url>
+-> Links local to remote.
+
+git fetch
+-> Downloads history without merging.
+
+git pull
+-> Downloads and merges changes.
+
+git push origin <branch>
+-> Uploads commits to remote.
+
+
+INSPECTING HISTORY
+--------------------------------------------------------------------------------
+git log
+-> Shows chronological commit history.
+
+git log --oneline
+-> Displays condensed history list.
+
+git diff
+-> Shows unstaged file changes.
+
+git blame <file>
+-> Shows author of changes.
+
+
+UNDOING CHANGES
+--------------------------------------------------------------------------------
+git restore <file>
+-> Discards uncommitted local changes.
+
+git reset --soft HEAD~1
+-> Undoes commit, keeps changes.
+
+git reset --hard HEAD~1
+-> Undoes commit, deletes changes.
+
+git revert <commit-id>
+-> Creates rollback commit safely.
+
+git stash
+-> Saves uncommitted work temporary.
+
+git stash pop
+-> Restores latest stashed work.
 ---
 
 
