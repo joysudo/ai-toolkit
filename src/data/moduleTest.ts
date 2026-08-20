@@ -131,7 +131,8 @@ export const moduleTest: Slide[] = [
                 isCorrect: false,
                 feedback: "That's called 'Artificial Superintelligence' — a theoretical concept well beyond anything that exists today."
             }
-        ]
+        ],
+        explanation: "Narrow AI is designed for a single, specific task. It's extremely capable within that domain but has no ability to do anything outside it. Every AI tool you've heard of — recommendation engines, chatbots, image generators — is Narrow AI."
     },
     {
         slideId: "orient-word-bank",

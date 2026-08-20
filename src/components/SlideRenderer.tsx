@@ -34,6 +34,9 @@ const MCQSlide = ({ slide, onAdvance }: { slide: QuestionMultipleChoiceSlide; on
           {slide.options[selected].feedback}
         </p>
       )}
+      {showAnswer && slide.explanation && (
+        <p className="mcq-explanation">{slide.explanation}</p>
+      )}
       <div className="slide-actions">
         {!checked && (
           <button className="btn-primary" onClick={() => setChecked(true)} disabled={selected === null}>
@@ -42,7 +45,9 @@ const MCQSlide = ({ slide, onAdvance }: { slide: QuestionMultipleChoiceSlide; on
         )}
         {checked && (
           <>
-            <button className="btn-secondary" onClick={() => setShowAnswer(true)}>Why?</button>
+            {slide.explanation && (
+              <button className="btn-secondary" onClick={() => setShowAnswer(true)}>Why?</button>
+            )}
             {!isCorrect && (
               <button className="btn-secondary" onClick={reset}>Try again</button>
             )}

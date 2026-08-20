@@ -62,6 +62,7 @@ export interface QuestionMultipleChoiceSlide {
     isCorrect: boolean;
     feedback: string;
   }[];
+  explanation?: string;
 }
 
 export interface QuestionInputSlide {

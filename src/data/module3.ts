@@ -49,7 +49,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: ""
             }
-        ]
+        ],
+        explanation: "Machine learning moves away from hand-written rules. Instead of programmers trying to predict every scenario, the AI is exposed to large amounts of data and learns to recognize patterns on its own. The more quality data it sees, the better its predictions become."
     },
     {
         slideId: "info-supervised",
@@ -101,7 +102,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: ""
             }
-        ]
+        ],
+        explanation: "Unsupervised learning is powerful because it finds structure in raw, unlabeled data that humans didn't organize. It's used for tasks like discovering customer segments, detecting unusual activity in security systems, or grouping news articles by topic — anywhere you want insight without pre-defined categories."
     },
     {
         slideId: "info-algorithms",
@@ -158,7 +160,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: ""
             }
-        ]
+        ],
+        explanation: "Regression algorithms find mathematical relationships between variables to predict a continuous value — a price, a temperature, a quantity. Clustering groups unlabeled data by similarity. Classification sorts inputs into defined categories. Each serves a different purpose."
     },
     {
         slideId: "q-classification",
@@ -180,7 +183,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: ""
             }
-        ]
+        ],
+        explanation: "Classification algorithms assign inputs to predefined categories. Spam vs. not spam, cancerous vs. benign, cat vs. dog — whenever an AI needs to sort something into a bucket, it's almost certainly using classification. The categories are defined before training begins."
     },
     {
         slideId: "q-clustering-input",
@@ -255,7 +259,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "Think of it as nested circles: AI is the broadest concept (making machines intelligent in any way), Machine Learning is one approach to AI (learning from data rather than hard-coded rules), and Deep Learning is a specific ML technique (using layered neural networks to recognize complex patterns)."
     },
     {
         slideId: "escape-mission2-hub",
@@ -286,7 +291,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "In supervised learning, every training example comes with a label — the correct answer. The model learns by comparing its predictions against those labels and adjusting. It's called 'supervised' because a human essentially oversees the training by providing those labels upfront."
     },
     {
         slideId: "escape-mission3-hub",
@@ -317,7 +323,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "Classification sorts inputs into discrete categories — spam or not spam, cat or dog. The other two options both predict a specific number (rainfall amount, house price), which is regression. When the answer is a category rather than a quantity, that's classification."
     },
     {
         slideId: "q-regression-example",
@@ -339,7 +346,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "Regression predicts a continuous number — a price, a temperature, a future quantity. Grouping customers by behavior is clustering (no pre-defined labels). Diagnosing diabetes (yes/no) is classification. Predicting a specific price next month is a textbook regression problem."
     },
     {
         slideId: "q-clustering-example",
@@ -361,7 +369,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "Clustering groups similar items together without pre-defined labels. Netflix doesn't know in advance what 'viewer types' exist — the algorithm discovers them by finding users with similar watching patterns. That's unsupervised clustering: the model finds the structure on its own."
     },
     {
         slideId: "escape-code",
@@ -401,7 +410,8 @@ export const module3: Slide[] = [
                 isCorrect: false,
                 feedback: "Wrong answer! Try again"
             }
-        ]
+        ],
+        explanation: "Order matters: Turing laid the theoretical foundation in the 1930s–50s, then the term 'AI' was coined at the 1956 Dartmouth Conference, then decades of research led to Deep Learning's breakthrough in the 2010s, and finally the current era of large language models and Generative AI."
     },
     {
         slideId: "q-math-puzzle",

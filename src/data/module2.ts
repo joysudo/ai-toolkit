@@ -65,7 +65,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Bias can indeed be related to coding errors or flawed data patterns in AI systems."
             }
-        ]
+        ],
+        explanation: "Bias can enter an AI through coding errors, but also through skewed training data, poor design choices, or inadequate testing. For example, a hiring tool trained mostly on male resumes may learn to rank men higher — not from a bug, but from biased data."
     },
     {
         slideId: "q-true-false-ethics",
@@ -82,7 +83,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Ethics is indeed the study of what is right and wrong."
             }
-        ]
+        ],
+        explanation: "Ethics is the branch of philosophy concerned with what is morally right and wrong. Applied to AI, it means building systems that make fair, honest decisions — and setting rules about what an AI should never do, even if it technically could."
     },
     {
         slideId: "info-what-are-ethics",
@@ -130,7 +132,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Both ethics and bias considerations are crucial and shouldn't be skipped."
             }
-        ]
+        ],
+        explanation: "Ethics and bias address different problems. Ethics sets the moral compass — what an AI should and shouldn't do. Managing bias ensures the AI doesn't systematically treat groups unfairly. A system can be ethically designed but still produce biased results if the training data is skewed."
     },
     {
         slideId: "q-identify-unbias",
@@ -152,7 +155,8 @@ export const module2: Slide[] = [
                 isCorrect: true,
                 feedback: "Correct! This demonstrates unbiased, ethical AI behavior that helps users without discrimination."
             }
-        ]
+        ],
+        explanation: "The first two options both reveal problems: one shows an AI that discriminates based on name length, the other shows an AI that rejects accurate corrections. Ethical, unbiased AI helps users accomplish their goals without imposing unfair restrictions or breaking down when challenged."
     },
     {
         slideId: "q-fill-blanks",
@@ -196,7 +200,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Offering help to everyone without exclusion is indeed an example of ethical AI behavior."
             }
-        ]
+        ],
+        explanation: "A core principle of AI ethics is non-discrimination — the system should treat all users fairly, regardless of their background, identity, or characteristics. Offering help to everyone without exclusion is a straightforward example of that principle in action."
     },
     {
         slideId: "q-corrupt-ai",
@@ -218,7 +223,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Providing factual information about natural disasters is not corrupt behavior."
             }
-        ]
+        ],
+        explanation: "Corrupt AI promotes harmful behavior rather than preventing it. Claiming that 'free speech' means you can hurt others is dangerous misinformation that could cause real-world harm. The other two options — explaining risks and providing factual information — are legitimate, helpful behaviors."
     },
     {
         slideId: "q-detect-bias",
@@ -240,7 +246,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Limiting features won't help detect bias."
             }
-        ]
+        ],
+        explanation: "Asking an AI to explain its reasoning or cite its sources forces it to make its assumptions visible. This is especially critical when AI makes high-stakes decisions — like hiring, lending, or medical diagnosis — where hidden bias could seriously harm real people."
     },
     {
         slideId: "escape-lesson1-complete",
@@ -271,7 +278,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. This is an example of ethical, helpful behavior."
             }
-        ]
+        ],
+        explanation: "Bias in AI means treating people differently based on characteristics that shouldn't affect the outcome — like age, race, gender, or name. Excluding users based solely on age, without a relevant reason, is a textbook example of discriminatory bias baked into the system's design."
     },
     {
         slideId: "q-exclusion-term",
@@ -305,7 +313,8 @@ export const module2: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. Ethics is fundamentally about distinguishing right from wrong."
             }
-        ]
+        ],
+        explanation: "Ethics is one of the oldest branches of philosophy, and its core question — what is right and wrong? — applies directly to AI. An AI that gives harmful advice, spreads misinformation, or treats people unfairly is acting unethically, even if it's technically working as programmed."
     },
     {
         slideId: "q-ethics-important",
@@ -327,7 +336,8 @@ export const module2: Slide[] = [
                 isCorrect: true,
                 feedback: "Correct! Understanding morals is another important aspect of AI ethics."
             }
-        ]
+        ],
+        explanation: "Ethics in AI serves two purposes: it tells the system what it should do (be honest, be fair, avoid harm), and what it should never do regardless of instructions. Both listed correct answers point to the same idea — AI needs a moral framework to make safe, trustworthy decisions."
     },
     {
         slideId: "escape-lesson3-complete",

@@ -70,7 +70,8 @@ export const module1: Slide[] = [
                 isCorrect: true,
                 feedback: "Great response! You know your stuff continue and learn more!"
             }
-        ]
+        ],
+        explanation: "AI isn't about machines developing their own consciousness — that's science fiction. At its core, AI is software built by humans to automate tasks that normally require human intelligence, like analyzing data, translating language, or making decisions."
     },
     {
         slideId: "6",
@@ -171,7 +172,8 @@ export const module1: Slide[] = [
                 isCorrect: true,
                 feedback: "Correct! Alan Turing developed the concept of the universal machine."
             }
-        ]
+        ],
+        explanation: "Aristotle laid philosophical groundwork for logical thinking, but the 'universal machine' — a theoretical device that could perform any computation given the right instructions — was Alan Turing's idea, introduced in his landmark 1936 paper."
     },
     {
         slideId: "9",
@@ -188,7 +190,8 @@ export const module1: Slide[] = [
                 isCorrect: false,
                 feedback: "Incorrect. John McCarthy did coin the term AI at the Dartmouth Conference."
             }
-        ]
+        ],
+        explanation: "The 1956 Dartmouth Conference in New Hampshire is considered the founding moment of AI as an academic field. John McCarthy, who organized it, coined the term 'Artificial Intelligence' — before that, the concept didn't even have a name."
     },
     {
         slideId: "10",
@@ -244,7 +247,8 @@ export const module1: Slide[] = [
                 isCorrect: false,
                 feedback: "Read that again"
             }
-        ]
+        ],
+        explanation: "Narrow AI (also called Weak AI) is specialized — it does one thing extremely well but can't operate outside that domain. A chess engine can't write poetry; a translation app can't play chess. 'Narrow' describes the scope of what it can do, not its level of capability."
     },
     {
         slideId: "13",
@@ -282,7 +286,8 @@ export const module1: Slide[] = [
                 isCorrect: false,
                 feedback: "This doesn't seem like the best response..."
             }
-        ]
+        ],
+        explanation: "Only Narrow AI exists today. General AI — a system with human-like flexibility across any domain — remains theoretical. Superintelligent AI, which would surpass humans across all tasks, exists only in science fiction. It's important not to confuse what AI can do now with what it might do in the future."
     },
     {
         slideId: "16",
