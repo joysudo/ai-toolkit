@@ -3,18 +3,52 @@ import { chatPersonas } from '../data/personas';
 import { useState } from 'react';
 
 const MCQSlide = ({slide}: {slide: QuestionMultipleChoiceSlide}) => {
-  const [mcqFeedback, setMcqFeedback] = useState('');
+  const [selected, setSelected] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const isCorrect = selected !== null && slide.options[selected].isCorrect;
+
+  const reset = () => { setSelected(null); setChecked(false); setShowAnswer(false); };
+
+  const optionClass = (i: number) => {
+    const base = 'mcq-option-btn';
+    if (!checked) return selected === i ? `${base} mcq-option-btn--selected` : base;
+    if (slide.options[i].isCorrect && (showAnswer || isCorrect)) return `${base} mcq-option-btn--correct`;
+    if (i === selected && !isCorrect) return `${base} mcq-option-btn--wrong`;
+    return base;
+  };
+
   return (
     <div className="mcq-container">
       <h1 className="mcq-heading">{slide.heading}</h1>
-      <div className="mcq-options">
+      <div className={`mcq-options${checked ? ' mcq-options--checked' : ''}`}>
         {slide.options.map((option, i) => (
-          <button key={i} onClick={() => setMcqFeedback(option.feedback)} className="mcq-option-btn">
+          <button key={i} className={optionClass(i)} onClick={() => { if (!checked) setSelected(i); }}>
             {option.text}
           </button>
         ))}
       </div>
-      {mcqFeedback && <p className="mcq-feedback">{mcqFeedback}</p>}
+      {!checked && (
+        <button className="mcq-check-btn" onClick={() => setChecked(true)} disabled={selected === null}>
+          Check
+        </button>
+      )}
+      {checked && (
+        <>
+          <p className={`mcq-feedback ${isCorrect ? 'mcq-feedback--correct' : 'mcq-feedback--wrong'}`}>
+            {slide.options[selected!].feedback}
+          </p>
+          {!isCorrect && (
+            <div className="mcq-wrong-actions">
+              {!showAnswer && (
+                <button className="mcq-see-answer-btn" onClick={() => setShowAnswer(true)}>See answer</button>
+              )}
+              <button className="mcq-retry-btn" onClick={reset}>Try again</button>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
