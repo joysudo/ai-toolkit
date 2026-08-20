@@ -27,7 +27,7 @@ export const module3: Slide[] = [
             subheading: "History of AI",
             body: "IBM describes Machine Learning as 'a branch of AI focused on enabling computers and machines to imitate the way that humans learn, to perform tasks autonomously, and to improve their performance and accuracy through experience and exposure to more data.' Machine Learning works by AI being fed data through a series of events in order to train itself slowly on how to respond to situations. When this process is repeated enough times and it is fed correct data, AI will better provide insights to questions."
         },
-        videoUrl: "https://www.youtube.com/embed/QHjRQwEQjJI?si=qY1VJeSEGsoWVPYp"
+        videoUrl: "https://www.youtube.com/embed/eSj80Zr6TEE"
     },
     {
         slideId: "q-ml-train",
@@ -37,17 +37,17 @@ export const module3: Slide[] = [
             {
                 text: "Teaching computers by writing every possible rule they should follow",
                 isCorrect: false,
-                feedback: "this is feedback"
+                feedback: ""
             },
             {
                 text: "Feeding computers data so they can learn patterns and improve performance over time.",
                 isCorrect: true,
-                feedback: "feedback"
+                feedback: ""
             },
             {
                 text: "Giving computers unlimited internet access so they can find answers themselves.",
                 isCorrect: false,
-                feedback: "feedback"
+                feedback: ""
             }
         ]
     },
@@ -79,7 +79,7 @@ export const module3: Slide[] = [
             subheading: "Unsupervised AI",
             body: "Unsupervised Machine Learning is utilizing the AI to engage in tasks humans can't process. It is essentially allowing the model to train itself. By providing datasets that don't have known inputs and outputs, the machine learns how to recognize patterns and trends in vast amounts of data that humans can't. Every time the model does this, it learns more about how to categorize and identify these patterns in the future, training the model to be more efficient and organized over time."
         },
-        videoUrl: "https://www.youtube.com/embed/JnnADNNb380"
+        videoUrl: "https://www.youtube.com/embed/JnnaDNNb380"
     },
     {
         slideId: "q-ml-type",
@@ -111,7 +111,7 @@ export const module3: Slide[] = [
             subheading: "AI",
             body: 'IBM defines algorithms as: "A machine learning algorithm is a set of rules or processes used by an AI system to conduct tasks—most often to discover new data insights and patterns, or to predict output values from a given set of input variables. Algorithms enable machine learning (ML) to learn."'
         },
-        videoUrl: "https://www.youtube.com/embed/QHjRQwEQjJI?si=qY1VJeSEGsoWVPYp"
+        videoUrl: ""
     },
     {
         slideId: "info-algorithm-types",

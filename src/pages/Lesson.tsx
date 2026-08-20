@@ -259,8 +259,7 @@ export function Lesson({ moduleId, slides }: Props) {
 
         .nav-btn:disabled {
           cursor: default;
-          // color: #cccccc;
-          color: transparent; // change this when adding gating, for now this just removes arrows at beginning and end
+          opacity: 0;
         }
 
         .nav-btn.prev-btn { left: 2rem; }

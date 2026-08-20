@@ -1,4 +1,4 @@
-import type { Slide, InfoTimelineSlide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
+import type { Slide, InfoCardsSlide, InfoTimelineSlide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
 import { chatPersonas } from '../data/personas';
 import { useState } from 'react';
 
@@ -38,12 +38,85 @@ const InputSlide = ({ slide, onTeleport }: { slide: QuestionInputSlide; onTelepo
             // make this unlock the "next" button later
           } else {
             setInputFeedback('Not quite. Try looking at that one again...');
-            // add brief pause
-            onTeleport(slide.remedialSlideId);
+            setTimeout(() => onTeleport(slide.remedialSlideId), 1500);
           }
         }} className="input-slide-btn">Submit</button>
       </form>
       {inputfeedback && <p className="input-slide-feedback">{inputfeedback}</p>}
+    </div>
+  );
+};
+
+const CardsSlide = ({ slide }: { slide: InfoCardsSlide }) => {
+  const [flipped, setFlipped] = useState<Record<number, boolean>>({});
+  return (
+    <div>
+      <h1>{slide.heading}</h1>
+      <div className="card-container">
+        {slide.cards.map((card, i) => (
+          <div
+            className={`card-wrapper${flipped[i] ? ' card-is-flipped' : ''}`}
+            key={i}
+            onClick={() => setFlipped(prev => ({ ...prev, [i]: !prev[i] }))}
+          >
+            <div className="card-inner">
+              <div className="card-face card-front">
+                <img src={card.imageUrl} alt={card.imageAlt}/>
+                <h3>{card.cardHeading}</h3>
+              </div>
+              <p className="card-face card-back">{card.bodyText}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <style>{/*css*/`
+        .card-container {
+          display: flex;
+          gap: 1rem;
+          perspective: 1000px;
+          flex-wrap: wrap;
+        }
+        .card-wrapper {
+          flex: 1 1 16rem;
+        }
+        .card-wrapper.card-is-flipped .card-inner {
+          transform: rotateY(180deg);
+        }
+        .card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.5s ease;
+          transform-style: preserve-3d;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-areas: "card-space";
+        }
+        .card-front, .card-back {
+          grid-area: card-space;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          backface-visibility: hidden;
+          background-color: white;
+          padding: 1rem;
+          border-radius: 1rem;
+          border: 1px solid lightgray;
+        }
+        .card-front img {
+          border-radius: 0.5rem;
+          display: block;
+          width: 100%;
+          object-fit: cover;
+        }
+        .card-back {
+          transform: rotateY(180deg)
+        }
+      `}</style>
     </div>
   );
 };
@@ -187,72 +260,7 @@ interface Props {
 export function SlideRenderer({ slide, onTeleport }: Props) {
   switch (slide.type) {
     case 'info-cards':
-      return (
-        <div>
-          <h1>{slide.heading}</h1>
-          <div className="card-container">
-            {slide.cards.map((card, i) => (
-              <div className="card-wrapper" key={i} onClick={(e) => e.currentTarget.classList.toggle('card-is-flipped')}>
-                <div className="card-inner">
-                  <div className="card-face card-front">
-                    <img src={card.imageUrl} alt={card.imageAlt}/>
-                    <h3>{card.cardHeading}</h3>
-                  </div>
-                  <p className="card-face card-back">{card.bodyText}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <style>{/*css*/`
-            .card-container {
-              display: flex;
-              gap: 1rem;
-              perspective: 1000px;
-              flex-wrap: wrap;
-            }
-            .card-wrapper {
-              flex: 1 1 16rem;
-            }
-            .card-wrapper.card-is-flipped .card-inner {
-              transform: rotateY(180deg);
-            }
-            .card-inner {
-              position: relative;
-              width: 100%;
-              height: 100%;
-              text-align: center;
-              transition: transform 0.5s ease;
-              transform-style: preserve-3d;
-              display: grid;
-              grid-template-columns: 1fr;
-              grid-template-areas: "card-space";
-            }
-            .card-front, .card-back {
-              grid-area: card-space;
-              flex-direction: column;
-              width: 100%;
-              height: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              backface-visibility: hidden;
-              background-color: white;
-              padding: 1rem;
-              border-radius: 1rem;
-              border: 1px solid lightgray;
-            }
-            .card-front img {
-              border-radius: 0.5rem;
-              display: block;
-              width: 100%;
-              object-fit: cover;
-            }
-            .card-back {
-              transform: rotateY(180deg)
-            }
-          `}</style>
-        </div>
-      );
+      return <CardsSlide slide={slide} />;
 
     case 'info-timeline':
       return <TimelineSlide slide={slide} />;
@@ -322,7 +330,7 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               {slide.textContent.subheading && <h3>{slide.textContent.subheading}</h3>}
               <p>{slide.textContent.body}</p>
             </div>
-            <iframe src={slide.videoUrl} height="315" width="560" allowFullScreen></iframe>
+            {slide.videoUrl && <iframe src={slide.videoUrl} height="315" width="560" allowFullScreen></iframe>}
           </div>
         </div>
       );
