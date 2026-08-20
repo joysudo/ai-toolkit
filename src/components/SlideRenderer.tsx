@@ -1,4 +1,4 @@
-import type { Slide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
+import type { Slide, InfoTimelineSlide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
 import { chatPersonas } from '../data/personas';
 import { useState } from 'react';
 
@@ -25,8 +25,8 @@ const InputSlide = ({ slide, onTeleport }: { slide: QuestionInputSlide; onTelepo
   return (
     <div>
       <h1>{slide.heading}</h1>
-      <form 
-        className="input-slide-form" 
+      <form
+        className="input-slide-form"
         onSubmit={(e) => {
           e.preventDefault();
         }}
@@ -44,6 +44,137 @@ const InputSlide = ({ slide, onTeleport }: { slide: QuestionInputSlide; onTelepo
         }} className="input-slide-btn">Submit</button>
       </form>
       {inputfeedback && <p className="input-slide-feedback">{inputfeedback}</p>}
+    </div>
+  );
+};
+
+const TimelineSlide = ({ slide }: { slide: InfoTimelineSlide }) => {
+  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const reveal = (i: number) => setRevealed(prev => ({ ...prev, [i]: true }));
+  return (
+    <div>
+      <h1>{slide.heading}</h1>
+      <div className="timeline-container">
+        {slide.events.map((event, i) => (
+          <div key={i} className="timeline-column">
+            <div className="timeline-top">
+              {i % 2 === 0 ? (
+                <button className="timeline-img-btn" onClick={() => reveal(i)} aria-label={`Reveal: ${event.name}`}>
+                  <img src={event.imageUrl} alt={event.imageAlt} />
+                </button>
+              ) : (
+                <div className="timeline-reveal" style={{ opacity: revealed[i] ? 1 : 0 }}>
+                  <h3>{event.name}</h3>
+                  <p>{event.date}</p>
+                  <p>{event.description}</p>
+                </div>
+              )}
+            </div>
+            <div className="timeline-line" />
+            <div className="timeline-bottom">
+              {i % 2 === 1 ? (
+                <button className="timeline-img-btn" onClick={() => reveal(i)} aria-label={`Reveal: ${event.name}`}>
+                  <img src={event.imageUrl} alt={event.imageAlt} />
+                </button>
+              ) : (
+                <div className="timeline-reveal" style={{ opacity: revealed[i] ? 1 : 0 }}>
+                  <h3>{event.name}</h3>
+                  <p>{event.date}</p>
+                  <p>{event.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <style>{/*css*/`
+        .timeline-container {
+          display: flex;
+          align-items: stretch;
+          min-height: 24rem;
+        }
+        .timeline-column {
+          flex: 1;
+          display: grid;
+          grid-template-rows: 1fr 3px 1fr;
+        }
+        .timeline-top {
+          display: flex;
+          align-items: flex-end;
+          padding: 0 0.5rem 0.5rem;
+        }
+        .timeline-bottom {
+          display: flex;
+          align-items: flex-start;
+          padding: 0.5rem 0.5rem 0;
+        }
+        .timeline-line {
+          background-color: black;
+          position: relative;
+          width: 100%;
+        }
+        .timeline-line::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 10px;
+          height: 10px;
+          border: 3px solid black;
+          border-radius: 50%;
+          background-color: white;
+        }
+        .timeline-img-btn {
+          background: #f0f0f0;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          width: 100%;
+          min-height: 8rem;
+          border-radius: 0.5rem;
+          overflow: hidden;
+        }
+        .timeline-img-btn img {
+          width: 100%;
+          height: 100%;
+          min-height: 8rem;
+          object-fit: cover;
+          border-radius: 0.5rem;
+          display: block;
+        }
+        .timeline-reveal {
+          transition: opacity 0.2s ease;
+          width: 100%;
+        }
+        .timeline-reveal h3 {
+          margin: 0 0 0.25rem;
+          font-size: 0.85rem;
+        }
+        .timeline-reveal p {
+          margin: 0 0 0.25rem;
+          font-size: 0.8rem;
+          color: #555;
+        }
+        @media (max-width: 768px) {
+          .timeline-container {
+            flex-direction: column;
+            min-height: unset;
+          }
+          .timeline-column {
+            grid-template-rows: unset;
+            grid-template-columns: auto 3px auto;
+            min-height: 6rem;
+          }
+          .timeline-top, .timeline-bottom {
+            padding: 0.5rem;
+          }
+          .timeline-line {
+            width: 3px;
+            height: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 };
@@ -122,97 +253,9 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
           `}</style>
         </div>
       );
-    
-    case 'info-timeline': 
-      return (
-        <div>
-          <h1>{slide.heading}</h1>
-          <div className="timeline-container">
-            {slide.events.map((event, i) => (
-              <>
-                {i % 2 === 0 ?
-                  <>
-                    <img src={event.imageUrl} alt={event.imageAlt} 
-                      onClick={(e) => e.currentTarget.nextElementSibling?.nextElementSibling?.classList.add('timeline-visible')}
-                    />
-                    <div className="timeline-line"></div>
-                  </>
-                : null}
-                <div className="timeline-reveal">
-                  <h3>{event.name}</h3>
-                  <p>{event.date}</p>
-                  <p>{event.description}</p>
-                </div>
-                {i % 2 === 1 ?
-                  <>
-                    <div className="timeline-line"></div>
-                    <img src={event.imageUrl} alt={event.imageAlt} 
-                      onClick={(e) => e.currentTarget.previousElementSibling?.previousElementSibling?.classList.add('timeline-visible')}
-                    />
-                  </>
-                : null}
-              </>
-              // </div>
-            ))}
-          </div>
-          <style>{/*css*/`
-            .timeline-container {
-              display: grid;
-              grid-template-rows: auto 3px auto;
-              grid-auto-flow: column;
-              grid-auto-columns: 1fr;
-              align-items: center;
-            }
-            .timeline-container > *:nth-child(3n) {
-              align-self: start;
-              margin-top: 1rem;
-            }
-            .timeline-container > *:nth-child(3n - 2) {
-              align-self: end;
-              margin-bottom: 1rem;
-            }
-            .timeline-line {
-              background-color: black;
-              position: relative;
-              width: 100%;
-              height: 100%;
-            }
-            .timeline-line::after {
-              content: '';
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              width: 10px;
-              height: 10px;
-              border: 3px solid black;
-              border-radius: 50%;
-              background-color: white;
-            }
-            .timeline-container img {
-              cursor: pointer;
-              width: calc(100% - 2rem);
-              max-height: 15rem;
-              object-fit: cover;
-              object-position: center;
-              margin: 0 1rem;
-            }
-            .timeline-reveal {
-              transition: opacity 0.2s ease;
-              opacity: 0;
-              margin: 0 1rem;
-            }
-            .timeline-reveal.timeline-visible {
-              opacity: 1;
-            }
-            @media (max-width: 768px) {
-              .timeline-container {
-                flex-direction: column;
-              }
-            }
-          `}</style>
-        </div>
-      );
+
+    case 'info-timeline':
+      return <TimelineSlide slide={slide} />;
 
     case 'info-chat':
       return (
@@ -237,14 +280,14 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
               display: flex;
               align-items: flex-end;
               gap: 0.75rem;
-              
+
               img {
                 width: 2.5rem;
                 height: 2.5rem;
                 border-radius: 50%;
                 object-fit: cover;
               }
-              
+
               p {
                 margin: 0;
                 padding: 0.75rem 1rem;
@@ -268,6 +311,9 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
       );
 
     case 'info-text-video':
+      if (import.meta.env.DEV && slide.videoUrl && slide.videoUrl.includes('watch?v=')) {
+        console.warn(`[SlideRenderer] Slide "${slide.slideId}": videoUrl uses a watch URL instead of an embed URL. Replace "youtube.com/watch?v=" with "youtube.com/embed/".`);
+      }
       return (
         <div>
           <div style={{ display: 'flex', gap: '3rem' }}>
@@ -283,10 +329,10 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
 
     case 'question-mcq':
       return <MCQSlide slide={slide}/>;
-    
+
     case 'question-input':
       return <InputSlide slide={slide} onTeleport={onTeleport}/>;
-    
+
     default:
       return <div>something went wrong (slide type could not be identified in SlideRenderer.tsx)</div>;
   }

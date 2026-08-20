@@ -46,7 +46,7 @@ export function Dashboard() {
           
           if (isDisabled) {
             return (
-              <div className="module-card disabled">
+              <div key={mod.id} className="module-card disabled">
                 <img
                   src={mod.imageUrl || 'https://via.placeholder.com/300x180'} 
                   alt={mod.name} 
@@ -63,8 +63,8 @@ export function Dashboard() {
             );
           }
 
-          return ( 
-            <Link to={`/module/${mod.id}`} className="module-card-link">
+          return (
+            <Link key={mod.id} to={`/module/${mod.id}`} className="module-card-link">
               <div className="module-card">
                 <img
                   src={mod.imageUrl || 'https://via.placeholder.com/300x180'} 
