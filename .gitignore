@@ -1,4 +1,6 @@
-# Logs
+# Node .gitignore stuff
+
+## Logs
 logs
 *.log
 npm-debug.log*
@@ -13,7 +15,7 @@ dist-ssr
 *.local
 .env
 
-# Editor directories and files
+## Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -27,3 +29,25 @@ dist-ssr
 # Nix-specific stuff 
 .direnv/
 .envrc
+
+# Firebase stuff
+
+## Firebase build and deployment files
+/firebase-debug.log
+/firebase-debug.*.log
+.firebaserc
+
+## Firebase Hosting
+/firebase.json
+*.cache
+hosting/.cache
+
+## Firebase Functions
+/functions/node_modules/
+/functions/.env
+/functions/package-lock.json
+
+## Firebase Emulators
+/firebase-*.zip
+/.firebase/
+/emulator-ui/
