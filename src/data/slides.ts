@@ -15,7 +15,7 @@ export const module1: Slide[] = [
     
     {
         slideId: "info-text-video-test",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "this is an info-text-video test",
         textContent: {
             subheading: "this is a text subheading",

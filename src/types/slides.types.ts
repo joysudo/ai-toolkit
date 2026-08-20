@@ -31,14 +31,16 @@ export interface InfoChatSlide {
   dialogue: string[];
 }
 
-export interface InfoTextVideoSlide {
-  type: "info-text-video";
+export interface InfoTextMediaSlide {
+  type: "info-text-media";
   heading: string;
   textContent: {
     subheading?: string;
     body: string;
   };
-  videoUrl: string;
+  videoUrl?: string;
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
 export interface InfoComparisonSlide {
@@ -82,7 +84,9 @@ export interface QuestionWordBankSlide {
 
 export interface QuestionToggleSlide {
   type: "question-toggle";
-  heading: string;
+  heading?: string;
+  imageUrl?: string;
+  imageAlt?: string;
   preamble?: string;
   question: string;
   options: {
@@ -95,7 +99,7 @@ export type Slide =
   | (SlideBase & InfoCardsSlide)
   | (SlideBase & InfoTimelineSlide)
   | (SlideBase & InfoChatSlide)
-  | (SlideBase & InfoTextVideoSlide)
+  | (SlideBase & InfoTextMediaSlide)
   | (SlideBase & InfoComparisonSlide)
   | (SlideBase & QuestionMultipleChoiceSlide)
   | (SlideBase & QuestionInputSlide)

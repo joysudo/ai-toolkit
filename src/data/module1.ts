@@ -37,7 +37,7 @@ export const module1: Slide[] = [
     },
     {
         slideId: "3",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "What exactly is AI?",
         textContent: {
             body: "There is no one answer to this question so here is an answer that is simple yet comprehensive. Artificial intelligence (AI) is a branch of computer science focused on creating computer programs or machines that can demonstrate intelligence behavior. AI systems are designed to complete tasks that typically require human intelligence, such as analyzing information, translating languages, solving problems, or making decisions."

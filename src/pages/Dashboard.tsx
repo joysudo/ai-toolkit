@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/config';
+import { useAuth } from '../firebase/auth';
 import { getAllProgress, type ModuleProgress } from '../firebase/progress';
 import { modules } from '../data/modules';
 
 export function Dashboard() {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const [allProgress, setAllProgress] = useState<Record<string, ModuleProgress>>({});
-  const [loading, setLoading] = useState(true);
+  const [progressLoading, setProgressLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        navigate("/", { replace: true });
-      } else {
-        const progressData = await getAllProgress(user.uid, modules.map(m => m.id));
-        setAllProgress(progressData);
-        setLoading(false);
-      }
+    if (authLoading) return;
+    if (!user) {
+      navigate("/", { replace: true });
+      return;
+    }
+    getAllProgress(user.uid, modules.map(m => m.id)).then((data) => {
+      setAllProgress(data);
+      setProgressLoading(false);
     });
-    return () => unsubscribe();
-  }, [navigate]);
+  }, [user, authLoading, navigate]);
 
   const handleSignout = async () => {
     try {
@@ -31,7 +32,7 @@ export function Dashboard() {
     }
   }
 
-  if (loading) {
+  if (authLoading || progressLoading) {
     return <div>Loading dashboard content...</div>;
   }
 
@@ -43,15 +44,14 @@ export function Dashboard() {
         {modules.map((mod, index) => {
           const pct = allProgress[mod.id]?.completed ? 100 : allProgress[mod.id] ? Math.round(((allProgress[mod.id].highestUnlocked + 1) / mod.slideCount) * 100) : 0;
           const isDisabled = !mod.alwaysUnlocked && index > 0 && !allProgress[modules[index - 1].id]?.completed;
-          
+
           if (isDisabled) {
             return (
               <div key={mod.id} className="module-card disabled">
-                <img
-                  src={mod.imageUrl || 'https://via.placeholder.com/300x180'} 
-                  alt={mod.name} 
-                  className="module-card-img"
-                />
+                {mod.imageUrl
+                  ? <img src={mod.imageUrl} alt={mod.name} className="module-card-img" />
+                  : <div className="module-card-img" aria-hidden="true" />
+                }
                 <div className="progress-bar-container">
                   <div className="progress-bar-fill" style={{ width: '0%' }} />
                 </div>
@@ -66,11 +66,10 @@ export function Dashboard() {
           return (
             <Link key={mod.id} to={`/module/${mod.id}`} className="module-card-link">
               <div className="module-card">
-                <img
-                  src={mod.imageUrl || 'https://via.placeholder.com/300x180'} 
-                  alt={mod.name} 
-                  className="module-card-img"
-                />
+                {mod.imageUrl
+                  ? <img src={mod.imageUrl} alt={mod.name} className="module-card-img" />
+                  : <div className="module-card-img" aria-hidden="true" />
+                }
                 <div className="progress-bar-container">
                   <div className="progress-bar-fill" style={{ width: `${pct}%` }} />
                 </div>

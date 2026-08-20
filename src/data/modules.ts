@@ -37,7 +37,7 @@ export const modules: ModuleDefinition[] = [
   },
   {
     id: 'test',
-    name: 'Slide Type Testing',
+    name: 'Course Orientation',
     imageUrl: '',
     slideCount: moduleTest.length,
     getSlides: () => moduleTest,

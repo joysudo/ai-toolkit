@@ -43,7 +43,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "info-bias-basics",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Learn the basics of Bias",
         textContent: {
             body: "Think of ethics as what right and wrong is and of bias as opinions not facts."
@@ -86,7 +86,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "info-what-are-ethics",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "What are Ethics?",
         textContent: {
             body: "Ethics in AI refers to the moral principles and guidelines that govern how AI systems should behave and make decisions."
@@ -103,7 +103,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "info-ethics-bias-details",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Understanding Ethics and Bias",
         textContent: {
             body: "Ethics: Ethics is when an AI is programed to know morals and what is right from wrong.\n\nBias: Bias is when an AI has a glitch and restricts groups. An example being Amazon developed an AI system to automate resume screening and rank candidates for technical roles. Bias can be in groups like race, age, degrees or gender.\n\nHow they connect: Having both ethics and bias will lead to an AI that will not have any bias and will think logically not emotionally. Having both will help others understand more."
@@ -164,7 +164,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "info-learnings",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Learnings",
         textContent: {
             body: "In this scenario, we have learned to handle a biased AI and what that means.\n\nKeys learned and soft skills developed:\n\nDetail orientated: The ability to see minor mistakes. Being detail oriented is helpful to find errors in code for AI.\n\nActive listening: Communication technique that involves giving full attention, to better understand why something may be happening.\n\nTaking responsibility: Owning what happened by acknowledging my actions and those of the people I'm responsible for, and committing to make things right or enhance the situation.\n\nProviding solutions: Providing concrete solutions in a proactive manner by proposing specific and effective measures to solve a problem."
@@ -174,7 +174,7 @@ export const module2: Slide[] = [
     // Escape Room Slides
     {
         slideId: "escape-title",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Escape Room: Ethics and Bias",
         textContent: {
             body: "The point is to escape a classroom by answering questions to leave the room and complete the whole module."
@@ -244,7 +244,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "escape-lesson1-complete",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Lesson 1 Completed!",
         textContent: {
             body: "Create a section that says lesson one has been completed."
@@ -283,7 +283,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "escape-lesson2-complete",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Lesson 2 Completed!",
         textContent: {
             body: "A section that shows that you completed lesson 2."
@@ -331,7 +331,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "escape-lesson3-complete",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Lesson 3 Completed!",
         textContent: {
             body: "Create something that says that lesson 3 has been completed."
@@ -360,7 +360,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "escape-lesson4-complete",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Lesson 4 Completed!",
         textContent: {
             body: "Create a section that shows that the last lesson has been passed."
@@ -369,7 +369,7 @@ export const module2: Slide[] = [
     },
     {
         slideId: "escape-diploma",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "🎓 Education Diploma",
         textContent: {
             body: "Create an education diploma to show they completed the escape room."

@@ -12,7 +12,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-what-learn",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "What Are We Going to Learn?",
         textContent: {
             body: "This module allows you to understand the systems which operate the functioning of Artificial Intelligence, while learning the different types of AI processes.\n\n- What is Machine Learning\n- Types of Machine Learning\n- What are Algorithms\n- Types of Algorithms"
@@ -21,7 +21,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-ml-history",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Machine Learning",
         textContent: {
             subheading: "History of AI",
@@ -53,7 +53,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-supervised",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Types of Machine Learning: Supervised AI",
         textContent: {
             subheading: "Supervised AI",
@@ -63,7 +63,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-reinforcement",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Types of Machine Learning: Reinforcement AI",
         textContent: {
             subheading: "Reinforcement AI",
@@ -73,7 +73,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-unsupervised",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Types of Machine Learning: Unsupervised AI",
         textContent: {
             subheading: "Unsupervised AI",
@@ -105,7 +105,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "info-algorithms",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Algorithms",
         textContent: {
             subheading: "AI",
@@ -209,7 +209,7 @@ export const module3: Slide[] = [
     // Escape Room Slides
     {
         slideId: "escape-title",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "AI Mystery Breakout",
         textContent: {
             subheading: "Do you have what it takes?",
@@ -219,7 +219,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-intro",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Intro",
         textContent: {
             body: "You have entered a dark and unknown world from which you have to get out before it's too late and you will be locked in forever. The only way to leave is through demonstrating your knowledge on how AI works to the rulers of this world, and they will let you leave."
@@ -228,7 +228,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-mission1-hub",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Mission 1",
         textContent: {
             body: "(Mission hub slide showing locked missions)"
@@ -259,7 +259,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-mission2-hub",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Mission 2",
         textContent: {
             body: "(Drag and discover interaction — mission hub slide)"
@@ -290,7 +290,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-mission3-hub",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Mission 3",
         textContent: {
             body: "(Mission hub slide)"
@@ -365,7 +365,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-code",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Remember the code",
         textContent: {
             body: "The code is: 216"
@@ -374,7 +374,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-mission4-hub",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Mission 4",
         textContent: {
             body: "(Mission hub slide)"
@@ -413,7 +413,7 @@ export const module3: Slide[] = [
     },
     {
         slideId: "escape-mission5-hub",
-        type: "info-text-video",
+        type: "info-text-media",
         heading: "Mission 5",
         textContent: {
             body: "(Final mission hub — all missions completed)"
