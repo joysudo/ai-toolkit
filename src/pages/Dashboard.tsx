@@ -42,7 +42,7 @@ export function Dashboard() {
       <div className="module-cards-grid">
         {modules.map((mod, index) => {
           const pct = allProgress[mod.id]?.completed ? 100 : allProgress[mod.id] ? Math.round(((allProgress[mod.id].highestUnlocked + 1) / mod.slideCount) * 100) : 0;
-          const isDisabled = index > 0 && !allProgress[modules[index - 1].id]?.completed;
+          const isDisabled = !mod.alwaysUnlocked && index > 0 && !allProgress[modules[index - 1].id]?.completed;
           
           if (isDisabled) {
             return (

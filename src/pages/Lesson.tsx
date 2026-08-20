@@ -9,9 +9,10 @@ import { Link } from 'react-router';
 interface Props {
   moduleId: string;
   slides: Slide[];
+  unlockAll?: boolean;
 }
 
-export function Lesson({ moduleId, slides }: Props) {
+export function Lesson({ moduleId, slides, unlockAll = false }: Props) {
   const { user } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [highestUnlocked, setHighestUnlocked] = useState(0);
@@ -104,7 +105,7 @@ export function Lesson({ moduleId, slides }: Props) {
     if (index !== -1) setCurrentSlide(index);
   }
   const jumpToSlide = (index: number) => {
-    if (index <= highestUnlocked) {
+    if (unlockAll || index <= highestUnlocked) {
       setCurrentSlide(index);
       setTocOpen(false);
     }
@@ -119,7 +120,7 @@ export function Lesson({ moduleId, slides }: Props) {
         {tocOpen && (
           <div className="toc-dropdown" ref={tocRef}>
             {slides.map((slide, i) => {
-              const isUnlocked = i <= highestUnlocked;
+              const isUnlocked = unlockAll || i <= highestUnlocked;
               const isCurrent = i === currentSlide;
               return (
                 <div

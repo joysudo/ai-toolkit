@@ -1,4 +1,4 @@
-import type { Slide, InfoCardsSlide, InfoTimelineSlide, QuestionMultipleChoiceSlide, QuestionInputSlide } from '../types/slides.types';
+import type { Slide, InfoCardsSlide, InfoTimelineSlide, QuestionMultipleChoiceSlide, QuestionInputSlide, QuestionWordBankSlide, QuestionToggleSlide } from '../types/slides.types';
 import { chatPersonas } from '../data/personas';
 import { useState } from 'react';
 
@@ -252,6 +252,204 @@ const TimelineSlide = ({ slide }: { slide: InfoTimelineSlide }) => {
   );
 };
 
+const WordBankSlide = ({ slide }: { slide: QuestionWordBankSlide }) => {
+  const [selected, setSelected] = useState<string | null>(null);
+  const [checked, setChecked] = useState(false);
+  const isCorrect = selected === slide.correctAnswer;
+
+  const reset = () => { setSelected(null); setChecked(false); };
+
+  return (
+    <div>
+      <h1>{slide.heading}</h1>
+      <div className="word-bank-sentence">
+        <span>{slide.beforeBlank} </span>
+        <span
+          className={`word-bank-blank${selected ? ' word-bank-blank--filled' : ''}${checked ? (isCorrect ? ' word-bank-blank--correct' : ' word-bank-blank--wrong') : ''}`}
+          onClick={() => { if (!checked && selected) setSelected(null); }}
+        >
+          {selected || '        '}
+        </span>
+        {slide.afterBlank && <span> {slide.afterBlank}</span>}
+      </div>
+      <div className="word-bank-options">
+        {slide.options.map((word, i) => (
+          <button
+            key={i}
+            className={`word-bank-tile${selected === word ? ' word-bank-tile--selected' : ''}`}
+            onClick={() => { if (!checked) setSelected(prev => prev === word ? null : word); }}
+            disabled={checked && selected !== word}
+          >
+            {word}
+          </button>
+        ))}
+      </div>
+      <button className="word-bank-check-btn" onClick={() => setChecked(true)} disabled={!selected || checked}>
+        Check
+      </button>
+      {checked && (
+        <div className={`word-bank-feedback ${isCorrect ? 'word-bank-feedback--correct' : 'word-bank-feedback--wrong'}`}>
+          <p>{isCorrect ? slide.feedback : 'Not quite — remove your answer and try again.'}</p>
+          {!isCorrect && <button className="word-bank-retry-btn" onClick={reset}>Try again</button>}
+        </div>
+      )}
+      <style>{/*css*/`
+        .word-bank-sentence {
+          font-size: 1.1rem;
+          margin: 1.5rem 0 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 1rem 1.25rem;
+          border: 1px solid #e0e0e0;
+          border-radius: 0.75rem;
+          background: white;
+        }
+        .word-bank-blank {
+          display: inline-block;
+          min-width: 6rem;
+          border-bottom: 2px dashed #aaa;
+          padding: 0.1rem 0.5rem;
+          cursor: pointer;
+          border-radius: 0.25rem;
+          transition: background 0.15s;
+        }
+        .word-bank-blank--filled {
+          border-bottom: 2px solid #333;
+          background: #f5f5f5;
+        }
+        .word-bank-blank--correct {
+          border-bottom: 2px solid #22c55e;
+          background: #f0fdf4;
+          color: #16a34a;
+        }
+        .word-bank-blank--wrong {
+          border-bottom: 2px solid #ef4444;
+          background: #fef2f2;
+          color: #dc2626;
+        }
+        .word-bank-options {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin: 1rem 0;
+          padding: 0.75rem;
+          background: #f5f5f5;
+          border-radius: 0.75rem;
+        }
+        .word-bank-tile {
+          padding: 0.4rem 1rem;
+          border: 1.5px solid #ccc;
+          border-radius: 0.5rem;
+          background: white;
+          cursor: pointer;
+          font-size: 0.95rem;
+          transition: border-color 0.15s, background 0.15s;
+        }
+        .word-bank-tile:hover:not(:disabled) {
+          border-color: #888;
+        }
+        .word-bank-tile--selected {
+          border-color: #333;
+          background: #f0f0f0;
+        }
+        .word-bank-tile:disabled {
+          opacity: 0.4;
+          cursor: default;
+        }
+        .word-bank-check-btn {
+          padding: 0.6rem 2rem;
+          border: none;
+          border-radius: 2rem;
+          background: #222;
+          color: white;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: opacity 0.15s;
+        }
+        .word-bank-check-btn:disabled {
+          opacity: 0.35;
+          cursor: default;
+        }
+        .word-bank-feedback {
+          margin-top: 1rem;
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .word-bank-feedback p { margin: 0; }
+        .word-bank-feedback--correct { background: #f0fdf4; color: #16a34a; }
+        .word-bank-feedback--wrong { background: #fef2f2; color: #dc2626; }
+        .word-bank-retry-btn {
+          padding: 0.35rem 1rem;
+          border: 1.5px solid currentColor;
+          border-radius: 2rem;
+          background: none;
+          color: inherit;
+          cursor: pointer;
+          font-size: 0.9rem;
+          white-space: nowrap;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const ToggleSlide = ({ slide }: { slide: QuestionToggleSlide }) => {
+  const [selected, setSelected] = useState<number | null>(null);
+  return (
+    <div>
+      {slide.preamble && <p>{slide.preamble}</p>}
+      <p><strong>{slide.question}</strong></p>
+      <div className="toggle-options">
+        {slide.options.map((opt, i) => (
+          <button
+            key={i}
+            className={`toggle-btn${selected === i ? ' toggle-btn--selected' : ''}`}
+            onClick={() => setSelected(i)}
+          >
+            {opt.text}
+          </button>
+        ))}
+      </div>
+      {selected !== null && (
+        <p className="toggle-feedback">{slide.options[selected].feedback}</p>
+      )}
+      <style>{/*css*/`
+        .toggle-options {
+          display: flex;
+          gap: 0.5rem;
+          margin: 1rem 0;
+        }
+        .toggle-btn {
+          padding: 0.4rem 1.25rem;
+          border: 1.5px solid #ccc;
+          border-radius: 0.5rem;
+          background: white;
+          cursor: pointer;
+          font-size: 0.95rem;
+          transition: border-color 0.15s, background 0.15s;
+        }
+        .toggle-btn:hover {
+          border-color: #888;
+        }
+        .toggle-btn--selected {
+          border-color: #333;
+          background: #f0f0f0;
+          font-weight: 500;
+        }
+        .toggle-feedback {
+          margin-top: 0.5rem;
+          color: #444;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 interface Props {
   slide: Slide;
   onTeleport(slideId: string): void;
@@ -335,11 +533,61 @@ export function SlideRenderer({ slide, onTeleport }: Props) {
         </div>
       );
 
+    case 'info-comparison':
+      return (
+        <div>
+          <h1>{slide.heading}</h1>
+          <div className="comparison-items">
+            {slide.items.map((item, i) => (
+              <div key={i} className="comparison-item">
+                {item.imageUrl && <img src={item.imageUrl} alt={item.imageAlt} className="comparison-img" />}
+                {!item.imageUrl && <div className="comparison-img comparison-img--placeholder" />}
+                <strong>{item.label}</strong>
+              </div>
+            ))}
+          </div>
+          <p>{slide.body}</p>
+          <style>{/*css*/`
+            .comparison-items {
+              display: flex;
+              gap: 2rem;
+              justify-content: center;
+              margin: 1.5rem 0;
+              flex-wrap: wrap;
+            }
+            .comparison-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 0.75rem;
+              text-align: center;
+            }
+            .comparison-img {
+              width: 10rem;
+              height: 8rem;
+              object-fit: contain;
+              border-radius: 0.5rem;
+              border: 1px solid #e0e0e0;
+              background: #f5f5f5;
+            }
+            .comparison-img--placeholder {
+              display: block;
+            }
+          `}</style>
+        </div>
+      );
+
     case 'question-mcq':
       return <MCQSlide slide={slide}/>;
 
     case 'question-input':
       return <InputSlide slide={slide} onTeleport={onTeleport}/>;
+
+    case 'question-word-bank':
+      return <WordBankSlide slide={slide} />;
+
+    case 'question-toggle':
+      return <ToggleSlide slide={slide} />;
 
     default:
       return <div>something went wrong (slide type could not be identified in SlideRenderer.tsx)</div>;

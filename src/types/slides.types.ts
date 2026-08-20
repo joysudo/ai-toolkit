@@ -41,6 +41,17 @@ export interface InfoTextVideoSlide {
   videoUrl: string;
 }
 
+export interface InfoComparisonSlide {
+  type: "info-comparison";
+  heading: string;
+  items: {
+    imageUrl: string;
+    imageAlt: string;
+    label: string;
+  }[];
+  body: string;
+}
+
 export interface QuestionMultipleChoiceSlide {
   type: "question-mcq";
   heading: string;
@@ -59,10 +70,34 @@ export interface QuestionInputSlide {
   remedialSlideId: string;
 }
 
+export interface QuestionWordBankSlide {
+  type: "question-word-bank";
+  heading: string;
+  beforeBlank: string;
+  afterBlank: string;
+  options: string[];
+  correctAnswer: string;
+  feedback: string;
+}
+
+export interface QuestionToggleSlide {
+  type: "question-toggle";
+  heading: string;
+  preamble?: string;
+  question: string;
+  options: {
+    text: string;
+    feedback: string;
+  }[];
+}
+
 export type Slide =
   | (SlideBase & InfoCardsSlide)
   | (SlideBase & InfoTimelineSlide)
   | (SlideBase & InfoChatSlide)
   | (SlideBase & InfoTextVideoSlide)
+  | (SlideBase & InfoComparisonSlide)
   | (SlideBase & QuestionMultipleChoiceSlide)
-  | (SlideBase & QuestionInputSlide);
+  | (SlideBase & QuestionInputSlide)
+  | (SlideBase & QuestionWordBankSlide)
+  | (SlideBase & QuestionToggleSlide);

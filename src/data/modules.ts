@@ -1,6 +1,7 @@
 import { module1 } from './module1';
 import { module2 } from './module2';
 import { module3 } from './module3';
+import { moduleTest } from './moduleTest';
 import type { Slide } from '../types/slides.types';
 
 export interface ModuleDefinition {
@@ -9,29 +10,38 @@ export interface ModuleDefinition {
   imageUrl: string;
   slideCount: number;
   getSlides: () => Slide[];
+  alwaysUnlocked?: boolean;
 }
 
 export const modules: ModuleDefinition[] = [
-  { 
-    id: '1', 
-    name: 'Module 1', 
+  {
+    id: '1',
+    name: 'Module 1',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Juvenile_Ragdoll.jpg',
-    slideCount: module1.length, 
-    getSlides: () => module1 
+    slideCount: module1.length,
+    getSlides: () => module1
   },
-  { 
-    id: '2', 
-    name: 'Module 2', 
+  {
+    id: '2',
+    name: 'Module 2',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Juvenile_Ragdoll.jpg',
-    slideCount: module2.length, 
-    getSlides: () => module2 
+    slideCount: module2.length,
+    getSlides: () => module2
   },
-  { 
-    id: '3', 
-    name: 'Module 3', 
+  {
+    id: '3',
+    name: 'Module 3',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Juvenile_Ragdoll.jpg',
-    slideCount: module3.length, 
-    getSlides: () => module3 
+    slideCount: module3.length,
+    getSlides: () => module3
+  },
+  {
+    id: 'test',
+    name: 'Slide Type Testing',
+    imageUrl: '',
+    slideCount: moduleTest.length,
+    getSlides: () => moduleTest,
+    alwaysUnlocked: true
   },
 ];
 
