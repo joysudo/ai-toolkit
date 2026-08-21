@@ -2,50 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { auth } from "../firebase/config";
 import { onAuthStateChanged, type User } from "firebase/auth";
+import { modules } from "../data/modules";
 import wormyLogo from '../assets/logo-placeholder.png';
-
-const MODULES = [
-  {
-    id: "m1",
-    title: "1. This is a creative name for module 1",
-    subtitle: "subtitle for module 1 goes here",
-    description: "Discover how computers learn from patterns, data, and examples instead of following traditional line-by-line instructions.",
-    tag: "Fundamentals"
-  },
-  {
-    id: "m2",
-    title: "2. creative name for module 2",
-    subtitle: "subtitle subtitle",
-    description: "Learn how to ask smart questions, give helpful context, and guide AI tools to produce useful creative ideas.",
-    tag: "Skill Building"
-  },
-  {
-    id: "m3",
-    title: "3. Creative name for module 3",
-    subtitle: "This is a subtitle page",
-    description: "Develop critical thinking skills to detect deepfakes, generated images, and AI-created text across the web.",
-    tag: "Safety & Ethics"
-  },
-  {
-    id: "m4",
-    title: "4. Mod 4 name",
-    subtitle: "subtitle goes here",
-    description: "Explore how musicians, writers, and artists use AI as a brain-storming partner to boost human creativity.",
-    tag: "Creation"
-  },
-  {
-    id: "m5",
-    title: "5. And so on",
-    subtitle: "You get the gist",
-    description: "Examine bias, privacy, and why human decision-making and empathy remain essential in an automated world.",
-    tag: "Ethics"
-  }
-];
 
 export function Landing() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeModule, setActiveModule] = useState<string>("m1");
+  const [activeModule, setActiveModule] = useState<string>(modules[0].id);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -102,7 +65,7 @@ export function Landing() {
           </div>
 
           <div className="curriculum-accordion">
-            {MODULES.map((mod) => {
+            {modules.map((mod) => {
               const isOpen = activeModule === mod.id;
               return (
                 <div
@@ -112,16 +75,16 @@ export function Landing() {
                 >
                   <div className="accordion-header">
                     <div>
-                      <span className="module-tag">{mod.tag}</span>
-                      <h3 className="module-title">{mod.title}</h3>
+                      {mod.tag && <span className="module-tag">{mod.tag}</span>}
+                      <h3 className="module-title">{mod.name}</h3>
                     </div>
                     <span className="accordion-icon">{isOpen ? "−" : "+"}</span>
                   </div>
 
                   {isOpen && (
                     <div className="accordion-body">
-                      <p className="module-subtitle">{mod.subtitle}</p>
-                      <p className="module-desc">{mod.description}</p>
+                      {mod.subtitle && <p className="module-subtitle">{mod.subtitle}</p>}
+                      {mod.description && <p className="module-desc">{mod.description}</p>}
                     </div>
                   )}
                 </div>
